@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Group {
+  id      Int       @id @default(autoincrement())
+  name    String
+  Section Section[]
+}
+
+model Instructor {
+  id                  Int                   @id @default(autoincrement())
+  name                String
+  InstructorOnSection InstructorOnSection[]
+}
+
+enum RoomType {
+  lecture
+  lab
+  both
+}
+
+model Room {
+  id      Int       @id @default(autoincrement())
+  name    String
+  type    RoomType
+  Section Section[]
+}
+
+enum SubjectType {
+  compulsory
+  elective
+}
+
+enum SubjectCategory {
+  internal
+  external
+}
+
+model Subject {
+  id       Int             @id @default(autoincrement())
+  code     String
+  name     String
+  credit   Int
+  lecture  Int
+  lab      Int
+  exam     Int
+  type     SubjectType
+  category SubjectCategory
+  Section  Section[]
+}
+
+enum SectionType {
+  lecture
+  lab
+}
+
+model Section {
+  id                  Int                   @id @default(autoincrement())
+  type                SectionType
+  no                  Int
+  lab                 Int?
+  subjectId           Int
+  roomId              Int?
+  groupId             Int?
+  parentId            Int?
+  Child               Section?              @relation("AssociatedSection", fields: [parentId], references: [id], onDelete: Cascade)
+  Parent              Section[]             @relation("AssociatedSection")
+  Subject             Subject               @relation(fields: [subjectId], references: [id])
+  Room                Room?                 @relation(fields: [roomId], references: [id])
+  Group               Group?                @relation(fields: [groupId], references: [id])
+  InstructorOnSection InstructorOnSection[]
+  Timetable           Timetable[]
+  TimetableExam       TimetableExam[]
+}
+
+model InstructorOnSection {
+  sectionId   Int
+  instuctorId Int
+  Section     Section    @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  instructor  Instructor @relation(fields: [instuctorId], references: [id])
+
+  @@id([sectionId, instuctorId])
+}
+
+model Timetable {
+  id        Int     @id @default(autoincrement())
+  weekday   String
+  start     Int
+  end       Int
+  sectionId Int
+  Section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+}
+
+model TimetableExam {
+  id        Int     @id @default(autoincrement())
+  weekday   String
+  start     Int
+  end       Int
+  sectionId Int
+  Section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+}
