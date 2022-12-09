@@ -48,9 +48,14 @@ export async function requestInstructor(
       take: limit,
     });
 
+  const count = id ? null : await prisma.instructor.count();
+
   return res.status(200).send({
     result: "ok",
     data: instructor,
+    limit: limit,
+    offset: offset,
+    total: count,
   });
 }
 

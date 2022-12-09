@@ -20,7 +20,7 @@ export default async (server: FastifyInstance) => {
           "lab",
           "exam",
           "type",
-          "cateogry",
+          "category",
         ],
         properties: {
           code: { type: "string" },

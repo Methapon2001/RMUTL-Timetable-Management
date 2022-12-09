@@ -44,9 +44,14 @@ export async function requestSubject(
       take: limit,
     });
 
+  const count = id ? null : await prisma.subject.count();
+
   return res.status(200).send({
     result: "ok",
     data: subject,
+    limit: limit,
+    offset: offset,
+    total: count,
   });
 }
 

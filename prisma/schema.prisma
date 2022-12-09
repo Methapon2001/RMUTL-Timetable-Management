@@ -69,8 +69,8 @@ model Section {
   roomId              Int?
   groupId             Int?
   parentId            Int?
-  Child               Section?              @relation("AssociatedSection", fields: [parentId], references: [id], onDelete: Cascade)
-  Parent              Section[]             @relation("AssociatedSection")
+  Parent              Section?              @relation("AssociatedSection", fields: [parentId], references: [id], onDelete: Cascade)
+  Child               Section[]             @relation("AssociatedSection")
   Subject             Subject               @relation(fields: [subjectId], references: [id])
   Room                Room?                 @relation(fields: [roomId], references: [id])
   Group               Group?                @relation(fields: [groupId], references: [id])
@@ -80,12 +80,12 @@ model Section {
 }
 
 model InstructorOnSection {
-  sectionId   Int
-  instuctorId Int
-  Section     Section    @relation(fields: [sectionId], references: [id], onDelete: Cascade)
-  instructor  Instructor @relation(fields: [instuctorId], references: [id])
+  sectionId    Int
+  instructorId Int
+  Section      Section    @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  instructor   Instructor @relation(fields: [instructorId], references: [id])
 
-  @@id([sectionId, instuctorId])
+  @@id([sectionId, instructorId])
 }
 
 model Timetable {

@@ -44,9 +44,14 @@ export async function requestGroup(
       take: limit,
     });
 
+  const count = id ? null : await prisma.group.count();
+
   return res.status(200).send({
     result: "ok",
     data: group,
+    limit: limit,
+    offset: offset,
+    total: count,
   });
 }
 

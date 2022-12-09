@@ -3,6 +3,8 @@ import cors from "@fastify/cors";
 import roomRoute from "./routes/room.route";
 import groupRoute from "./routes/group.route";
 import instructorRoute from "./routes/instructor.route";
+import sectionRoute from "./routes/section.route";
+import subjectRoute from "./routes/subject.route";
 
 const server = fastify({
   ajv: {
@@ -44,7 +46,9 @@ server.setErrorHandler((error, request, reply) => {
 server.register(cors);
 server.register(roomRoute);
 server.register(groupRoute);
+server.register(subjectRoute);
 server.register(instructorRoute);
+server.register(sectionRoute);
 
 const start = async () => {
   await server.listen({ host: "0.0.0.0", port: 3000 }).then(() => {
