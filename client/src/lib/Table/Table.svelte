@@ -19,8 +19,6 @@
     "Sunday",
   ];
 
-  $: console.log(data);
-
   function handleClick(e) {
     const { weekday, period } = e.target.dataset;
 
@@ -31,28 +29,31 @@
     }
   }
 
-  function handleSubmit(e) {
-        if (!state.weekday || !state.period) {
-            alert("Please select day and period");
-            return;
-        }
-
-        data = [
-            ...data,
-            {
-                // on submit, this will send to backend and then get the id from there instead.
-                id: data.length + 1,
-                table: name,
-                weekday: state.weekday,
-                period: state.period,
-                section: state.section,
-            },
-        ];
+  function handleSubmit() {
+    if (!state.weekday || !state.period) {
+      alert("Please select day and period");
+      return;
     }
 
-    function convertPeriod(period, size) {
-        return `${state.period}/${state.period + state.size}`;
-    }
+    // This data submit is temporary.
+    // Real data will be added after send to back-end.
+    data = [
+      ...data,
+      {
+        id: data.length + 1,
+        weekday: state.weekday,
+        start: state.period,
+        end: state.period + state.size - 1,
+        section: state.section,
+      },
+    ];
+  }
+
+  function convertPeriod(period, size) {
+    console.log(period, size);
+
+    return `${period}/${period + size}`;
+  }
 
   function convertWeekday(weekday) {
     return weekday == "mon"
@@ -86,23 +87,22 @@
     {#if select && state.weekday && state.period && state.size}
       <div
         class="bg-green-600 opacity-20 absolute w-full"
-        style="grid-column: {state.period}/{state.period + state.size}; 
+        style="grid-column: {convertPeriod(state.period, state.size)}; 
         grid-row: {convertWeekday(state.weekday)};"
       />
     {/if}
 
     {#each data as sec (sec.id)}
-            <div
-                class="cell bg-blue-600 absolute"
-                style="grid-column: {convertPeriod(
-                    sec.period,5
-                )}; grid-row: {convertWeekday(sec.weekday)}; width: 100%"
-            />
-      {/each}
+      <div
+        class="cell bg-blue-600 absolute"
+        style="grid-column: {convertPeriod(
+          sec.start,
+          sec.end - sec.start + 1
+        )}; grid-row: {convertWeekday(sec.weekday)}; width: 100%"
+      />
+    {/each}
   </div>
-  <button on:click={handleSubmit} class="btn-primary"
-        >Submit</button
-    >
+  <button on:click={handleSubmit} class="btn-primary">Submit</button>
 </div>
 
 <style>

@@ -3,8 +3,8 @@
   import { fly } from "svelte/transition";
   import { onMount } from "svelte";
   import { subjectStore } from "../store";
-  import AddSubject from "../components/Subject/AddSubject.svelte";
-    import ViewSubject from "../components/Subject/ViewSubject.svelte";
+  import AddSubject from "../lib/Subject/AddSubject.svelte";
+    import ViewSubject from "../lib/Subject/ViewSubject.svelte";
 
   onMount(async () => {
     try {

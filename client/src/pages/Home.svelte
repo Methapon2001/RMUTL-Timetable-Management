@@ -1,6 +1,6 @@
 <script>
   import { fly } from "svelte/transition";
-  import Table from "../components/Table/Table.svelte";
+  import Table from "../lib/Table/Table.svelte";
 
   let table_data = [
     {
@@ -23,7 +23,7 @@
 
 <div in:fly={{ y: 32, duration: 500 }}>
   {#each table_data as td (td.id)}
-    <Table />
+    <Table select={true}/>
   {/each}
 
   <button class="btn-primary" on:click={AddTable}>Add table</button>

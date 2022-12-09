@@ -1,7 +1,7 @@
 <script>
   import router from "page";
 
-  import Navbar from "./components/Navbar.svelte";
+  import Navbar from "./lib/Navbar.svelte";
   import Home from "./pages/Home.svelte";
   import Instructor from "./pages/Instructor.svelte";
   import Room from "./pages/Room.svelte";

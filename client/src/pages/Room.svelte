@@ -3,8 +3,8 @@
   import { fly } from "svelte/transition";
   import { onMount } from "svelte";
   import { roomStore } from "../store";
-  import AddRoom from "../components/Room/AddRoom.svelte";
-  import ViewRoom from "../components/Room/ViewRoom.svelte";
+  import AddRoom from "../lib/Room/AddRoom.svelte";
+  import ViewRoom from "../lib/Room/ViewRoom.svelte";
 
   onMount(async () => {
     try {

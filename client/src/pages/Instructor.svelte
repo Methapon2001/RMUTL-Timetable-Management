@@ -3,8 +3,8 @@
   import { fly } from "svelte/transition";
   import { onMount } from "svelte";
   import { instructorStore } from "../store";
-  import AddInstructor from "../components/Instructor/AddInstructor.svelte";
-  import ViewInstructor from "../components/Instructor/ViewInstructor.svelte";
+  import AddInstructor from "../lib/Instructor/AddInstructor.svelte";
+  import ViewInstructor from "../lib/Instructor/ViewInstructor.svelte";
 
   onMount(async () => {
     try {

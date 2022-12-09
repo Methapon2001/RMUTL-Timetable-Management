@@ -1,6 +1,5 @@
 <script>
   import { roomStore } from "../../store";
-  import { fade } from "svelte/transition";
   import axios from "axios";
 
   let next = true;
