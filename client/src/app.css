@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .nav-link {
+    @apply inline-block px-4 py-2 text-center font-bold transition uppercase relative after:block after:bg-slate-300 after:transition after:duration-300 after:m-auto after:h-1 after:w-2/3 after:hover:bg-slate-600;
+  }
+
+  .form-input {
+    @apply px-4 py-2 w-full bg-slate-100 rounded-full outline-none border-2 border-transparent transition focus:border-2 focus:border-slate-600 placeholder:capitalize;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 text-center bg-slate-400 text-white rounded-full transition cursor-pointer hover:bg-slate-500 disabled:bg-slate-300;
+  }
+}

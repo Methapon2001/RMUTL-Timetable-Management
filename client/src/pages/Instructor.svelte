@@ -2,16 +2,16 @@
   import axios from "axios";
   import { fly } from "svelte/transition";
   import { onMount } from "svelte";
-  import { roomStore } from "../store";
-  import AddRoom from "../components/Room/AddRoom.svelte";
-  import ViewRoom from "../components/Room/ViewRoom.svelte";
+  import { instructorStore } from "../store";
+  import AddInstructor from "../components/Instructor/AddInstructor.svelte";
+  import ViewInstructor from "../components/Instructor/ViewInstructor.svelte";
 
   onMount(async () => {
     try {
       const res = await axios
-        .get("http://localhost:3000/api/room?limit=10")
+        .get("http://localhost:3000/api/instructor?limit=10")
         .then((res) => res.data);
-      $roomStore = {
+      $instructorStore = {
         data: res.data,
         limit: res.limit,
         offset: res.offset,
@@ -25,9 +25,9 @@
 
 <div in:fly={{ y: 32, duration: 500 }}>
   <div class="mb-5">
-    <AddRoom />
+    <AddInstructor />
   </div>
   <div class="mb-5">
-    <ViewRoom />
+    <ViewInstructor />
   </div>
 </div>

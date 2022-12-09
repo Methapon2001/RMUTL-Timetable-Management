@@ -1,5 +1,5 @@
 <script>
-  import { roomStore } from "../../store";
+  import { instructorStore } from "../../store";
   import { fade } from "svelte/transition";
   import axios from "axios";
 
@@ -10,10 +10,10 @@
     try {
       const res = await axios
         .get(
-          `http://localhost:3000/api/room?limit=${$roomStore.limit}&offset=${$roomStore.offset}`
+          `http://localhost:3000/api/instructor?limit=${$instructorStore.limit}&offset=${$instructorStore.offset}`
         )
         .then((res) => res.data);
-      $roomStore = {
+      $instructorStore = {
         data: res.data,
         limit: res.limit,
         offset: res.offset,
@@ -24,9 +24,9 @@
     }
   }
 
-  async function handleDelete(room) {
+  async function handleDelete(instructor) {
     try {
-      await axios.delete(`http://localhost:3000/api/room/${room.id}`);
+      await axios.delete(`http://localhost:3000/api/instructor/${instructor.id}`);
     } catch (e) {
       console.log(e.response.data);
     } finally {
@@ -35,25 +35,25 @@
   }
 
   function handleNextPage(e) {
-    if ($roomStore.offset + $roomStore.limit < $roomStore.total)
-      $roomStore.offset += $roomStore.limit;
+    if ($instructorStore.offset + $instructorStore.limit < $instructorStore.total)
+      $instructorStore.offset += $instructorStore.limit;
     updateData();
   }
 
   function handlePrevPage(e) {
-    if ($roomStore.offset >= $roomStore.limit)
-      $roomStore.offset -= $roomStore.limit;
+    if ($instructorStore.offset >= $instructorStore.limit)
+      $instructorStore.offset -= $instructorStore.limit;
     updateData();
   }
 
   $: {
-    if ($roomStore.offset + $roomStore.limit < $roomStore.total) {
+    if ($instructorStore.offset + $instructorStore.limit < $instructorStore.total) {
       next = true;
     } else {
       next = false;
     }
 
-    if ($roomStore.offset >= $roomStore.limit) {
+    if ($instructorStore.offset >= $instructorStore.limit) {
       previous = true;
     } else {
       previous = false;
@@ -66,17 +66,15 @@
     <thead>
       <tr class="bg-slate-100">
         <th class="border">Name</th>
-        <th class="w-64 p-2 border">Type</th>
         <th class="w-64 p-2 border">Action</th>
       </tr>
     </thead>
     <tbody>
-      {#each $roomStore.data as room (room.id)}
+      {#each $instructorStore.data as instructor (instructor.id)}
         <tr>
-          <td class="p-1 text-center uppercase border">{room.name}</td>
-          <td class="p-1 text-center capitalize border">{room.type}</td>
-          <td class="p-1 text-center border">
-            <button on:click={handleDelete(room)} class="btn-primary">
+          <td class="p-1 text-center capitalize border">{instructor.name}</td>
+          <td class="p-1 text-center uppercase border">
+            <button on:click={handleDelete(instructor)} class="btn-primary">
               Delete
             </button>
           </td>

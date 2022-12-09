@@ -33,7 +33,7 @@
       if ($roomStore.data.length < $roomStore.limit) {
         $roomStore.data = [...$roomStore.data, data];
       }
-      
+
       $roomStore.total = $roomStore.total + 1;
 
       state.name = undefined;
@@ -50,22 +50,16 @@
       <div class="col-span-2">
         <label class="block" for="room_name">Room Name: </label>
         <input
-          class="px-3 py-2 w-full bg-slate-100 rounded outline-none border-2 border-transparent transition focus:border-2 focus:border-slate-600"
-          type="text"
-          name="room_name"
           id="room_name"
-          placeholder="Enter room name"
+          type="text"
+          class="form-input"
+          placeholder="Enter Room Name"
           bind:value={state.name}
         />
       </div>
       <div>
         <label class="block" for="room_type">Room Type: </label>
-        <select
-          bind:value={state.type}
-          class="px-3 py-2 w-full bg-slate-100 rounded outline-none border-2 border-transparent transition focus:border-2 focus:border-slate-600"
-          name="room_type"
-          id="room_type"
-        >
+        <select bind:value={state.type} class="form-input" id="room_type">
           {#each list as item}
             <option value={item.value}>{item.text}</option>
           {/each}
@@ -73,11 +67,13 @@
       </div>
     </div>
     <div class="mb-5">
-      <input
-        type="submit"
-        class="px-3 py-2 w-full text-center bg-slate-400 text-white rounded transition cursor-pointer hover:bg-slate-500"
-        value="Add Room"
-      />
+      <input type="submit" class="btn-primary w-full" value="Add Room" />
     </div>
   </form>
 </div>
+
+<style>
+  label {
+    @apply font-bold;
+  }
+</style>
