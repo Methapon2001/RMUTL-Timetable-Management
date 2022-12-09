@@ -7,7 +7,7 @@ import {
 } from "../services/subject.service";
 
 export default async (server: FastifyInstance) => {
-  server.post("/api/instructor", {
+  server.post("/api/subject", {
     handler: createSubject,
     schema: {
       body: {
@@ -36,7 +36,7 @@ export default async (server: FastifyInstance) => {
     },
   });
 
-  server.get("/api/instructor", {
+  server.get("/api/subject", {
     handler: requestSubject,
     schema: {
       querystring: {
@@ -49,7 +49,7 @@ export default async (server: FastifyInstance) => {
     },
   });
 
-  server.get("/api/instructor/:id", {
+  server.get("/api/subject/:id", {
     handler: requestSubject,
     schema: {
       params: {
@@ -61,7 +61,7 @@ export default async (server: FastifyInstance) => {
     },
   });
 
-  server.put("/api/instructor/:id", {
+  server.put("/api/subject/:id", {
     handler: updateSubject,
     schema: {
       params: {
@@ -87,7 +87,7 @@ export default async (server: FastifyInstance) => {
     },
   });
 
-  server.delete("/api/instructor/:id", {
+  server.delete("/api/subject/:id", {
     handler: deleteSubject,
     schema: {
       params: {
