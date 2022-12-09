@@ -10,13 +10,13 @@ datasource db {
 model Group {
   id      Int       @id @default(autoincrement())
   name    String
-  Section Section[]
+  section Section[]
 }
 
 model Instructor {
   id                  Int                   @id @default(autoincrement())
   name                String
-  InstructorOnSection InstructorOnSection[]
+  instructorOnSection InstructorOnSection[]
 }
 
 enum RoomType {
@@ -29,7 +29,7 @@ model Room {
   id      Int       @id @default(autoincrement())
   name    String
   type    RoomType
-  Section Section[]
+  section Section[]
 }
 
 enum SubjectType {
@@ -52,7 +52,7 @@ model Subject {
   exam     Int
   type     SubjectType
   category SubjectCategory
-  Section  Section[]
+  section  Section[]
 }
 
 enum SectionType {
@@ -69,20 +69,20 @@ model Section {
   roomId              Int?
   groupId             Int?
   parentId            Int?
-  Parent              Section?              @relation("AssociatedSection", fields: [parentId], references: [id], onDelete: Cascade)
-  Child               Section[]             @relation("AssociatedSection")
-  Subject             Subject               @relation(fields: [subjectId], references: [id])
-  Room                Room?                 @relation(fields: [roomId], references: [id])
-  Group               Group?                @relation(fields: [groupId], references: [id])
-  InstructorOnSection InstructorOnSection[]
-  Timetable           Timetable[]
-  TimetableExam       TimetableExam[]
+  parent              Section?              @relation("AssociatedSection", fields: [parentId], references: [id], onDelete: Cascade)
+  child               Section[]             @relation("AssociatedSection")
+  subject             Subject               @relation(fields: [subjectId], references: [id])
+  room                Room?                 @relation(fields: [roomId], references: [id])
+  group               Group?                @relation(fields: [groupId], references: [id])
+  instructorOnSection InstructorOnSection[]
+  timetable           Timetable[]
+  timetableExam       TimetableExam[]
 }
 
 model InstructorOnSection {
   sectionId    Int
   instructorId Int
-  Section      Section    @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  section      Section    @relation(fields: [sectionId], references: [id], onDelete: Cascade)
   instructor   Instructor @relation(fields: [instructorId], references: [id])
 
   @@id([sectionId, instructorId])
@@ -94,7 +94,7 @@ model Timetable {
   start     Int
   end       Int
   sectionId Int
-  Section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
 }
 
 model TimetableExam {
@@ -103,5 +103,5 @@ model TimetableExam {
   start     Int
   end       Int
   sectionId Int
-  Section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
 }

@@ -61,25 +61,25 @@ export async function createSection(
         roomId: shift.roomId,
         groupId: shift.groupId,
         parentId: main ? main.id : null,
-        InstructorOnSection: {
+        instructorOnSection: {
           create: instructor,
         },
       },
       include: {
-        Subject: true,
-        Room: true,
-        Group: true,
-        Parent: {
+        subject: true,
+        room: true,
+        group: true,
+        parent: {
           include: {
-            Room: true,
-            InstructorOnSection: {
+            room: true,
+            instructorOnSection: {
               include: {
                 instructor: true,
               }
             }
           }
         },
-        InstructorOnSection: {
+        instructorOnSection: {
           include: {
             instructor: true,
           },
@@ -115,20 +115,20 @@ export async function requestSection(
       skip: offset,
       take: limit,
       include: {
-        Subject: true,
-        Room: true,
-        Group: true,
-        Parent: {
+        subject: true,
+        room: true,
+        group: true,
+        parent: {
           include: {
-            Room: true,
-            InstructorOnSection: {
+            room: true,
+            instructorOnSection: {
               include: {
                 instructor: true,
               }
             }
           }
         },
-        InstructorOnSection: {
+        instructorOnSection: {
           include: {
             instructor: true,
           },
