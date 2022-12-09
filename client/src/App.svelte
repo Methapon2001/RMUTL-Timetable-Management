@@ -19,7 +19,7 @@
 
 <main>
   <Navbar />
-  <div class="p-5">
+  <div class="container mx-auto p-5">
     <svelte:component this={page} />
   </div>
 </main>
