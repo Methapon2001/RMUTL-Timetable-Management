@@ -60,16 +60,12 @@ export async function updateSubject(
   res: FastifyReply,
 ) {
   const { id } = req.params;
-  const { name, type } = req.body;
 
   const subject = await prisma.subject.update({
     where: {
       id: id,
     },
-    data: {
-      name: name,
-      type: type,
-    },
+    data: { ...req.body },
   });
 
   return res.status(200).send({

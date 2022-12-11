@@ -10,6 +10,7 @@
   "dependencies": {
     "@fastify/cors": "^8.2.0",
     "@prisma/client": "4.7.1",
+    "ajv": "^8.11.2",
     "fastify": "^4.10.2"
   },
   "devDependencies": {

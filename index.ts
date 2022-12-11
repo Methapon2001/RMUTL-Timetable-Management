@@ -1,4 +1,5 @@
-import fastify from "fastify";
+import Fastify from "fastify";
+import Ajv from "ajv";
 import cors from "@fastify/cors";
 import roomRoute from "./routes/room.route";
 import groupRoute from "./routes/group.route";
@@ -6,13 +7,37 @@ import instructorRoute from "./routes/instructor.route";
 import sectionRoute from "./routes/section.route";
 import subjectRoute from "./routes/subject.route";
 
-const server = fastify({
-  ajv: {
-    customOptions: {
-      allErrors: true,
-      removeAdditional: true,
-    },
-  },
+const server = Fastify();
+
+const schemaCompilers: Record<string, Ajv> = {
+  body: new Ajv({
+    removeAdditional: true,
+    coerceTypes: false,
+    allErrors: true,
+  }),
+  params: new Ajv({
+    removeAdditional: false,
+    coerceTypes: true,
+    allErrors: true,
+  }),
+  querystring: new Ajv({
+    removeAdditional: false,
+    coerceTypes: true,
+    allErrors: true,
+  }),
+  headers: new Ajv({
+    removeAdditional: false,
+    coerceTypes: true,
+    allErrors: true
+  })
+};
+
+server.setValidatorCompiler((req) => {
+  if (!req.httpPart) throw new Error("Missing httpPart");
+  const compiler = schemaCompilers[req.httpPart];
+  if (!compiler) throw new Error(`Missing compiler for ${req.httpPart}`);
+
+  return compiler.compile(req.schema);
 });
 
 server.setErrorHandler((error, request, reply) => {

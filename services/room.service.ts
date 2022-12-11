@@ -16,13 +16,8 @@ export async function createRoom(
   req: FastifyRequest<{ Body: Room }>,
   res: FastifyReply,
 ) {
-  const { name, type } = req.body;
-
   const room = await prisma.room.create({
-    data: {
-      name: name,
-      type: type,
-    },
+    data: { ...req.body },
   });
 
   return res.status(200).send({
@@ -65,16 +60,12 @@ export async function updateRoom(
   res: FastifyReply,
 ) {
   const { id } = req.params;
-  const { name, type } = req.body;
 
   const room = await prisma.room.update({
     where: {
       id: id,
     },
-    data: {
-      name: name,
-      type: type,
-    },
+    data: { ...req.body },
   });
 
   return res.status(200).send({

@@ -48,7 +48,7 @@ export async function createSection(
 
     const instructor: { instructorId: number }[] = [];
 
-    shift.instructorId.forEach((id) => {
+    shift.instructorId?.forEach((id) => {
       instructor.push({ instructorId: id });
     });
 

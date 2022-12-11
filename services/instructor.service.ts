@@ -16,12 +16,8 @@ export async function createInstructor(
   req: FastifyRequest<{ Body: Instructor }>,
   res: FastifyReply,
 ) {
-  const { name } = req.body;
-
   const instructor = await prisma.instructor.create({
-    data: {
-      name: name,
-    },
+    data: { ...req.body },
   });
 
   return res.status(200).send({
@@ -64,15 +60,12 @@ export async function updateInstructor(
   res: FastifyReply,
 ) {
   const { id } = req.params;
-  const { name } = req.body;
 
   const instructor = await prisma.instructor.update({
     where: {
       id: id,
     },
-    data: {
-      name: name,
-    },
+    data: { ...req.body },
   });
 
   return res.status(200).send({
