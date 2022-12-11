@@ -65,8 +65,8 @@
 
 <div class="border border-slate-300 rounded p-5">
   <form on:submit|preventDefault={handleSubmit}>
-    <div class="grid grid-cols-5 gap-5 mb-5">
-      <div class="col-span-1">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-5 mb-5">
+      <div class="md:col-span-1">
         <label class="block" for="subject_code">Subject Code: </label>
         <input
           id="subject_code"
@@ -76,7 +76,7 @@
           bind:value={state.code}
         />
       </div>
-      <div class="col-span-3">
+      <div class="md:col-span-3">
         <label class="block" for="subject_name">Subject Name: </label>
         <input
           id="subject_name"
@@ -86,7 +86,7 @@
           bind:value={state.name}
         />
       </div>
-      <div class="col-span-1">
+      <div class="md:col-span-1">
         <label class="block" for="subject_credit">Credit: </label>
         <input
           id="subject_credit"
@@ -96,7 +96,7 @@
           bind:value={state.credit}
         />
       </div>
-      <div class="col-span-1">
+      <div class="md:col-span-1">
         <label class="block" for="subject_lecture">Lecture Hours: </label>
         <input
           id="subject_lecture"
@@ -106,7 +106,7 @@
           bind:value={state.lecture}
         />
       </div>
-      <div class="col-span-1">
+      <div class="md:col-span-1">
         <label class="block" for="subject_lab">Lab Hours: </label>
         <input
           id="subject_lab"
@@ -116,7 +116,7 @@
           bind:value={state.lab}
         />
       </div>
-      <div class="col-span-1">
+      <div class="md:col-span-1">
         <label class="block" for="subject_exam">Exam Hours: </label>
         <input
           id="subject_exam"
@@ -126,16 +126,16 @@
           bind:value={state.exam}
         />
       </div>
-      <div class="col-span-1">
-        <label class="block" for="subject_type">Subject Type: </label>
+      <div class="md:col-span-1">
+        <label class="block" for="subject_type">Type: </label>
         <select bind:value={state.type} class="form-input" id="subject_type">
           {#each listType as item}
             <option value={item.value}>{item.text}</option>
           {/each}
         </select>
       </div>
-      <div class="col-span-1">
-        <label class="block" for="subject_category">Subject Category: </label>
+      <div class="md:col-span-1">
+        <label class="block" for="subject_category">Category: </label>
         <select
           bind:value={state.category}
           class="form-input"

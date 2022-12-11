@@ -46,8 +46,8 @@
 
 <div class="border border-slate-300 rounded p-5">
   <form on:submit|preventDefault={handleSubmit}>
-    <div class="grid grid-cols-3 gap-5 mb-5">
-      <div class="col-span-2">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+      <div class="md:col-span-2">
         <label class="block" for="room_name">Room Name: </label>
         <input
           id="room_name"

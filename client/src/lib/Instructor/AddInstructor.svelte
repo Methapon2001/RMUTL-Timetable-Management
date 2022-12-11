@@ -31,8 +31,8 @@
 <div class="border border-slate-300 rounded p-5">
   <form on:submit|preventDefault={handleSubmit}>
     <label class="block" for="instructor_name">Instructor Name: </label>
-    <div class="grid grid-cols-5 gap-5 mb-5">
-      <div class="col-span-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5 mb-5">
+      <div class="md:col-span-2 lg:col-span-4">
         <input
           id="instructor_name"
           type="text"
@@ -41,7 +41,7 @@
           bind:value={state.name}
         />
       </div>
-      <div class="col-span-1">
+      <div>
         <input
           type="submit"
           class="btn-primary w-full"
