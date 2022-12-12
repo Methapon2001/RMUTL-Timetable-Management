@@ -4,7 +4,7 @@
   import { onMount } from "svelte";
   import { subjectStore } from "../store";
   import AddSubject from "../lib/Subject/AddSubject.svelte";
-    import ViewSubject from "../lib/Subject/ViewSubject.svelte";
+  import ViewSubject from "../lib/Subject/ViewSubject.svelte";
 
   onMount(async () => {
     try {
