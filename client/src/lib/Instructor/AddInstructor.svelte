@@ -21,7 +21,6 @@
       $instructorStore.total = $instructorStore.total + 1;
 
       state.name = undefined;
-      state.type = "lecture";
     } catch (err) {
       console.log(err.response.data);
     }

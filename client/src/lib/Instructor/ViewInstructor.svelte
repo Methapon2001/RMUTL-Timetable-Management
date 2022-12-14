@@ -1,9 +1,12 @@
 <script>
   import { instructorStore } from "../../store";
   import axios from "axios";
+  import EditInstructor from "./EditInstructor.svelte";
 
   let next = true;
   let previous = true;
+  let editModal = false;
+  let editData = null;
 
   async function updateData() {
     try {
@@ -33,6 +36,11 @@
     } finally {
       updateData();
     }
+  }
+
+  function showEdit(instructor) {
+    editModal = true;
+    editData = instructor;
   }
 
   function handleNextPage(e) {
@@ -82,6 +90,9 @@
           <tr>
             <td class="p-1 text-center capitalize border">{instructor.name}</td>
             <td class="p-1 text-center uppercase border">
+              <button on:click={showEdit(instructor)} class="btn-primary">
+                Edit
+              </button>
               <button on:click={handleDelete(instructor)} class="btn-primary">
                 Delete
               </button>
@@ -91,6 +102,9 @@
       </tbody>
     </table>
   </div>
+  {#if editModal}
+    <EditInstructor bind:state={editModal} bind:instructor={editData}/>
+  {/if}
 
   <button on:click={handlePrevPage} disabled={!previous} class="btn-primary">
     Previous
