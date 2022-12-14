@@ -6,6 +6,7 @@ import groupRoute from "./routes/group.route";
 import instructorRoute from "./routes/instructor.route";
 import sectionRoute from "./routes/section.route";
 import subjectRoute from "./routes/subject.route";
+import buildingRoute from "./routes/building.route";
 
 const server = Fastify();
 
@@ -24,6 +25,7 @@ const schemaCompilers: Record<string, Ajv> = {
     removeAdditional: false,
     coerceTypes: true,
     allErrors: true,
+    useDefaults: true,
   }),
   headers: new Ajv({
     removeAdditional: false,
@@ -74,6 +76,7 @@ server.register(groupRoute);
 server.register(subjectRoute);
 server.register(instructorRoute);
 server.register(sectionRoute);
+server.register(buildingRoute);
 
 const start = async () => {
   await server.listen({ host: "0.0.0.0", port: 3000 }).then(() => {

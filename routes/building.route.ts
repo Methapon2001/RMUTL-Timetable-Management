@@ -1,29 +1,28 @@
 import { FastifyInstance } from "fastify";
 import {
-  createRoom,
-  deleteRoom,
-  requestRoom,
-  updateRoom,
-} from "../services/room.service";
+  createBuilding,
+  deleteBuilding,
+  requestBuilding,
+  updateBuilding,
+} from "../services/building.service";
 
 export default async (server: FastifyInstance) => {
-  server.post("/api/room", {
-    handler: createRoom,
+  server.post("/api/building", {
+    handler: createBuilding,
     schema: {
       body: {
         type: "object",
-        required: ["name", "type", "buildingId"],
+        required: ["name", "code"],
         properties: {
           name: { type: "string" },
-          type: { type: "string", enum: ["lecture", "lab", "both"] },
-          buildingId: { type: "number" },
+          code: { type: "string" },
         },
       },
     },
   });
 
-  server.get("/api/room", {
-    handler: requestRoom,
+  server.get("/api/building", {
+    handler: requestBuilding,
     schema: {
       querystring: {
         type: "object",
@@ -35,8 +34,8 @@ export default async (server: FastifyInstance) => {
     },
   });
 
-  server.get("/api/room/:id", {
-    handler: requestRoom,
+  server.get("/api/building/:id", {
+    handler: requestBuilding,
     schema: {
       params: {
         type: "object",
@@ -47,8 +46,8 @@ export default async (server: FastifyInstance) => {
     },
   });
 
-  server.put("/api/room/:id", {
-    handler: updateRoom,
+  server.put("/api/building/:id", {
+    handler: updateBuilding,
     schema: {
       params: {
         type: "object",
@@ -60,16 +59,15 @@ export default async (server: FastifyInstance) => {
         type: "object",
         properties: {
           name: { type: "string" },
-          type: { type: "string", enum: ["lecture", "lab", "both"] },
-          buildingId: { type: "number" },
+          code: { type: "string" },
         },
         additionalProperties: false,
       },
     },
   });
 
-  server.delete("/api/room/:id", {
-    handler: deleteRoom,
+  server.delete("/api/building/:id", {
+    handler: deleteBuilding,
     schema: {
       params: {
         type: "object",

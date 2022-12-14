@@ -19,6 +19,13 @@ model Instructor {
   instructorOnSection InstructorOnSection[]
 }
 
+model Building {
+  id   Int    @id @default(autoincrement())
+  name String
+  code String
+  room Room[]
+}
+
 enum RoomType {
   lecture
   lab
@@ -26,10 +33,12 @@ enum RoomType {
 }
 
 model Room {
-  id      Int       @id @default(autoincrement())
-  name    String
-  type    RoomType
-  section Section[]
+  id         Int       @id @default(autoincrement())
+  name       String
+  buildingId Int
+  building   Building  @relation(fields: [buildingId], references: [id])
+  type       RoomType
+  section    Section[]
 }
 
 enum SubjectType {
@@ -53,6 +62,18 @@ model Subject {
   type     SubjectType
   category SubjectCategory
   section  Section[]
+}
+
+model Course {
+  id      Int               @id @default(autoincrement())
+  name    String
+  subject SubjectOnCourse[]
+}
+
+model SubjectOnCourse {
+  id       Int    @id @default(autoincrement())
+  courseId Int
+  course   Course @relation(fields: [courseId], references: [id])
 }
 
 enum SectionType {
@@ -88,9 +109,19 @@ model InstructorOnSection {
   @@id([sectionId, instructorId])
 }
 
+enum Weekday {
+  mon
+  tue
+  wed
+  thu
+  fri
+  sat
+  sun
+}
+
 model Timetable {
   id        Int     @id @default(autoincrement())
-  weekday   String
+  weekday   Weekday
   start     Int
   end       Int
   sectionId Int
@@ -99,7 +130,7 @@ model Timetable {
 
 model TimetableExam {
   id        Int     @id @default(autoincrement())
-  weekday   String
+  weekday   Weekday
   start     Int
   end       Int
   sectionId Int
