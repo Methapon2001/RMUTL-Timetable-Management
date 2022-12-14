@@ -5,6 +5,9 @@
   let next = true;
   let previous = true;
 
+  
+  console.log($roomStore);
+
   async function updateData() {
     try {
       const res = await axios
@@ -65,15 +68,17 @@
     <table class="w-full">
       <thead>
         <tr class="bg-slate-100">
-          <th class="border">Name</th>
-          <th class="w-64 p-2 border">Type</th>
-          <th class="w-64 p-2 border">Action</th>
+          <th class="w-32 p-2 border">Building</th>
+          <th class="w-64 p-2border">Name</th>
+          <th class="w-16 p-2 border">Type</th>
+          <th class="w-16 p-2 border">Action</th>
         </tr>
       </thead>
       <tbody>
         {#each $roomStore.data as room (room.id)}
           <tr>
-            <td class="p-1 text-center uppercase border">{room.name}</td>
+            <td class="p-1 text-center capitalize border">{room.building.name}</td>
+            <td class="p-1 text-center uppercase border">{room.building.code}{room.name}</td>
             <td class="p-1 text-center capitalize border">{room.type}</td>
             <td class="p-1 text-center border">
               <button on:click={handleDelete(room)} class="btn-primary">

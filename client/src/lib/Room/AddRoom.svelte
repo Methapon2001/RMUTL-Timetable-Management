@@ -1,13 +1,17 @@
 <script>
   import axios from "axios";
+  import { onMount } from "svelte";
   import { roomStore } from "../../store";
 
   let state = {
     name: undefined,
-    type: undefined,
+    type: "lecture",
+    buildingId: undefined,
   };
 
-  let list = [
+  let listBuilding = [];
+
+  let listRoomType = [
     {
       value: "lecture",
       text: "Lecture",
@@ -21,6 +25,18 @@
       text: "Lecture & Lab",
     },
   ];
+
+  onMount(async () => {
+    try {
+      const res = await axios
+        .get("http://localhost:3000/api/building?limit=999")
+        .then((res) => res.data);
+
+      listBuilding = res.data;
+    } catch (e) {
+      console.log(e.response.data);
+    }
+  });
 
   async function handleSubmit(e) {
     try {
@@ -38,6 +54,7 @@
 
       state.name = undefined;
       state.type = "lecture";
+      state.buildingId = undefined;
     } catch (err) {
       console.log(err.response.data);
     }
@@ -46,8 +63,21 @@
 
 <div class="border border-slate-300 rounded p-5">
   <form on:submit|preventDefault={handleSubmit}>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+    <div class="grid grid-cols-1 md:grid-cols-6 gap-5 mb-5">
       <div class="md:col-span-2">
+        <label class="block" for="building_name">Building: </label>
+        <select
+          bind:value={state.buildingId}
+          class="form-input"
+          id="building_name"
+        >
+          <option value="" disabled>Select Building</option>
+          {#each listBuilding as item}
+            <option value={item.id}>{item.name}</option>
+          {/each}
+        </select>
+      </div>
+      <div class="md:col-span-3">
         <label class="block" for="room_name">Room Name: </label>
         <input
           id="room_name"
@@ -57,10 +87,10 @@
           bind:value={state.name}
         />
       </div>
-      <div>
+      <div class="md:col-span-1">
         <label class="block" for="room_type">Room Type: </label>
         <select bind:value={state.type} class="form-input" id="room_type">
-          {#each list as item}
+          {#each listRoomType as item}
             <option value={item.value}>{item.text}</option>
           {/each}
         </select>
