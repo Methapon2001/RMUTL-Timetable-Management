@@ -34,3 +34,10 @@ export const timetableStore = writable({
   offset: null,
   total: null,
 });
+
+export const buildingStore = writable({
+  data: [],
+  limit: null,
+  offset: null,
+  total: null,
+});

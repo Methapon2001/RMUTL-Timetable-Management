@@ -6,4 +6,5 @@
   <a class="nav-link" href="/subject">Subject</a>
   <a class="nav-link" href="/instructor">Instructor</a>
   <a class="nav-link" href="/section">Section</a>
+  <a class="nav-link" href="/building">Building</a>
 </div>
