@@ -21,7 +21,7 @@
 
       const { data } = res.data;
 
-      const idx = $instructorStore.data.findIndex((inst) => inst.id == data.id);
+      const idx = $instructorStore.data.findIndex((item) => item.id == data.id);
 
       $instructorStore.data[idx] = data;
 
@@ -33,7 +33,7 @@
 </script>
 
 <div class="modal_wrapper" transition:fade={{ duration: 200 }}>
-  <div class="modal rounded-md w-1/3">
+  <div class="modal rounded-md w-10/12 md:w-1/3">
     <form on:submit|preventDefault={handleSubmit}>
       <div class="text-xl font-bold">Edit Instructor</div>
       <hr class="mb-3" />
@@ -67,6 +67,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 99;
   }
 
   .modal {

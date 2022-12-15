@@ -2,6 +2,8 @@
   import { instructorStore } from "../../store";
   import axios from "axios";
   import EditInstructor from "./EditInstructor.svelte";
+  import EditIcon from "../Icon/EditIcon.svelte";
+  import DeleteIcon from "../Icon/DeleteIcon.svelte";
 
   let next = true;
   let previous = true;
@@ -76,6 +78,10 @@
   }
 </script>
 
+{#if editModal}
+  <EditInstructor bind:state={editModal} bind:instructor={editData} />
+{/if}
+
 <div class="border border-slate-300 rounded p-5">
   <div class="overflow-x-auto mb-5">
     <table class="w-full">
@@ -90,11 +96,17 @@
           <tr>
             <td class="p-1 text-center capitalize border">{instructor.name}</td>
             <td class="p-1 text-center uppercase border">
-              <button on:click={showEdit(instructor)} class="btn-primary">
-                Edit
+              <button
+                on:click={showEdit(instructor)}
+                class="p-3 rounded-full transition hover:bg-slate-100"
+              >
+                <EditIcon />
               </button>
-              <button on:click={handleDelete(instructor)} class="btn-primary">
-                Delete
+              <button
+                on:click={handleDelete(instructor)}
+                class="p-3 rounded-full transition hover:bg-slate-100"
+              >
+                <DeleteIcon />
               </button>
             </td>
           </tr>
@@ -102,9 +114,6 @@
       </tbody>
     </table>
   </div>
-  {#if editModal}
-    <EditInstructor bind:state={editModal} bind:instructor={editData}/>
-  {/if}
 
   <button on:click={handlePrevPage} disabled={!previous} class="btn-primary">
     Previous

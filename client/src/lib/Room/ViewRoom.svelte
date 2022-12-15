@@ -1,12 +1,14 @@
 <script>
   import { roomStore } from "../../store";
   import axios from "axios";
+  import EditRoom from "./EditRoom.svelte";
+  import DeleteIcon from "../Icon/DeleteIcon.svelte";
+  import EditIcon from "../Icon/EditIcon.svelte";
 
   let next = true;
   let previous = true;
-
-  
-  console.log($roomStore);
+  let editModal = false;
+  let editData = null;
 
   async function updateData() {
     try {
@@ -24,6 +26,11 @@
     } catch (e) {
       console.log(e.response.data);
     }
+  }
+
+  function showEdit(room) {
+    editModal = true;
+    editData = room;
   }
 
   async function handleDelete(room) {
@@ -63,6 +70,10 @@
   }
 </script>
 
+{#if editModal}
+  <EditRoom bind:state={editModal} bind:room={editData} />
+{/if}
+
 <div class="border border-slate-300 rounded p-5">
   <div class="overflow-x-auto mb-5">
     <table class="w-full">
@@ -77,12 +88,25 @@
       <tbody>
         {#each $roomStore.data as room (room.id)}
           <tr>
-            <td class="p-1 text-center capitalize border">{room.building.name}</td>
-            <td class="p-1 text-center uppercase border">{room.building.code}{room.name}</td>
+            <td class="p-1 text-center capitalize border"
+              >{room.building.name}</td
+            >
+            <td class="p-1 text-center uppercase border"
+              >{room.building.code}{room.name}</td
+            >
             <td class="p-1 text-center capitalize border">{room.type}</td>
             <td class="p-1 text-center border">
-              <button on:click={handleDelete(room)} class="btn-primary">
-                Delete
+              <button
+                on:click={showEdit(room)}
+                class="p-3 rounded-full transition hover:bg-slate-100"
+              >
+                <EditIcon />
+              </button>
+              <button
+                on:click={handleDelete(room)}
+                class="p-3 rounded-full transition hover:bg-slate-100"
+              >
+                <DeleteIcon />
               </button>
             </td>
           </tr>

@@ -147,7 +147,7 @@
         </select>
       </div>
     </div>
-    <div class="mb-5">
+    <div>
       <input type="submit" class="btn-primary w-full" value="Add Subject" />
     </div>
   </form>

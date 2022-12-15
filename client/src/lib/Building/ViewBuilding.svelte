@@ -1,9 +1,14 @@
 <script>
   import { buildingStore } from "../../store";
   import axios from "axios";
+  import EditBuilding from "./EditBuilding.svelte";
+  import EditIcon from "../Icon/EditIcon.svelte";
+  import DeleteIcon from "../Icon/DeleteIcon.svelte";
 
   let next = true;
   let previous = true;
+  let editModal = false;
+  let editData = null;
 
   async function updateData() {
     try {
@@ -33,6 +38,11 @@
     }
   }
 
+  function showEdit(building) {
+    editModal = true;
+    editData = building;
+  }
+
   function handleNextPage(e) {
     if ($buildingStore.offset + $buildingStore.limit < $buildingStore.total)
       $buildingStore.offset += $buildingStore.limit;
@@ -60,6 +70,10 @@
   }
 </script>
 
+{#if editModal}
+  <EditBuilding bind:state={editModal} bind:building={editData} />
+{/if}
+
 <div class="border border-slate-300 rounded p-5">
   <div class="overflow-x-auto mb-5">
     <table class="w-full">
@@ -76,8 +90,17 @@
             <td class="p-1 text-center uppercase border">{building.code}</td>
             <td class="p-1 text-center capitalize border">{building.name}</td>
             <td class="p-1 text-center border">
-              <button on:click={handleDelete(building)} class="btn-primary">
-                Delete
+              <button
+                on:click={showEdit(building)}
+                class="p-3 rounded-full transition hover:bg-slate-100"
+              >
+                <EditIcon />
+              </button>
+              <button
+                on:click={handleDelete(building)}
+                class="p-3 rounded-full transition hover:bg-slate-100"
+              >
+                <DeleteIcon />
               </button>
             </td>
           </tr>
