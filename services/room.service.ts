@@ -43,7 +43,7 @@ export async function requestRoom(
       },
       include: {
         building: true,
-      }
+      },
     })
     : await prisma.room.findMany({
       skip: offset,
@@ -75,6 +75,9 @@ export async function updateRoom(
       id: id,
     },
     data: { ...req.body },
+    include: {
+      building: true,
+    },
   });
 
   return res.status(200).send({
