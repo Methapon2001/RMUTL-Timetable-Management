@@ -75,9 +75,9 @@ export async function createSection(
             instructorOnSection: {
               include: {
                 instructor: true,
-              }
-            }
-          }
+              },
+            },
+          },
         },
         instructorOnSection: {
           include: {
@@ -124,9 +124,9 @@ export async function requestSection(
             instructorOnSection: {
               include: {
                 instructor: true,
-              }
-            }
-          }
+              },
+            },
+          },
         },
         instructorOnSection: {
           include: {
@@ -144,5 +144,55 @@ export async function requestSection(
     limit: limit,
     offset: offset,
     total: count,
+  });
+}
+
+export async function updateSection(
+  req: FastifyRequest<
+    {
+      Params: Param;
+      Querystring: Query;
+      Body: Section & { instructorId: number[] };
+    }
+  >,
+  res: FastifyReply,
+) {
+}
+
+export async function deleteSection(
+  req: FastifyRequest<{ Params: Param }>,
+  res: FastifyReply,
+) {
+  const { id } = req.params;
+
+  const section = await prisma.section.delete({
+    where: {
+      id: id,
+    },
+    include: {
+      subject: true,
+      room: true,
+      group: true,
+      parent: {
+        include: {
+          room: true,
+          instructorOnSection: {
+            include: {
+              instructor: true,
+            },
+          },
+        },
+      },
+      instructorOnSection: {
+        include: {
+          instructor: true,
+        },
+      },
+    },
+  });
+
+  return res.status(200).send({
+    result: "ok",
+    data: section,
   });
 }

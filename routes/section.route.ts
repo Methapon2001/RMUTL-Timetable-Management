@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { createSection, requestSection } from "../services/section.service";
+import { createSection, deleteSection, requestSection } from "../services/section.service";
 
 export default async (server: FastifyInstance) => {
   server.post("/api/section", {
@@ -47,6 +47,18 @@ export default async (server: FastifyInstance) => {
         properties: {
           limit: { type: "number", default: 20 },
           offset: { type: "number", default: 0 },
+        },
+      },
+    },
+  });
+
+  server.delete("/api/section/:id", {
+    handler: deleteSection,
+    schema: {
+      params: {
+        type: "object",
+        properties: {
+          id: { type: "number", minimum: 1 },
         },
       },
     },
