@@ -4,7 +4,6 @@
   import { onMount } from "svelte";
   import { sectionStore } from "../store";
   import AddSection from "../lib/Section/AddSection.svelte";
-  import ViewSection from "../lib/Section/ViewSection.svelte";
 
   onMount(async () => {
     try {
@@ -24,10 +23,4 @@
 </script>
 
 <div in:fly={{ y: 32, duration: 500 }}>
-  <div class="mb-5">
-    <AddSection />
-  </div>
-  <div>
-    <ViewSection />
-  </div>
 </div>

@@ -24,10 +24,18 @@
 </script>
 
 <div in:fly={{ y: 32, duration: 500 }}>
-  <div class="mb-5">
+  <div class="mb-3">
     <AddInstructor />
   </div>
-  <div class="mb-5">
+  <div class="flex items-center justify-between rounded-lg drop-shadow mb-3 bg-slate-500 p-3 text-white">
+    <div>
+      <span class="font-bold text-xl">Intructors</span>
+    </div>
+    <div>
+      <input class="rounded-lg p-2 outline-none focus:outline-slate-600 w-48 focus:outline-2" placeholder="Search" type="text">
+    </div>
+  </div>
+  <div>
     <ViewInstructor />
   </div>
 </div>

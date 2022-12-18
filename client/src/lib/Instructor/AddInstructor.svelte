@@ -27,9 +27,9 @@
   }
 </script>
 
-<div class="border border-slate-300 rounded p-5">
+<div class="rounded-lg p-3 bg-white drop-shadow">
   <form on:submit|preventDefault={handleSubmit}>
-    <label class="block" for="instructor_name">Instructor Name: </label>
+    <label class="block font-bold" for="instructor_name">Instructor Name: </label>
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
       <div class="md:col-span-2 lg:col-span-4">
         <input
@@ -50,9 +50,3 @@
     </div>
   </form>
 </div>
-
-<style>
-  label {
-    @apply font-bold;
-  }
-</style>

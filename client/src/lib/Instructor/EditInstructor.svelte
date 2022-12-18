@@ -1,14 +1,12 @@
 <script>
   import axios from "axios";
   import { instructorStore } from "../../store";
-  import { fade } from "svelte/transition";
+  import Modal from "../Components/Modal.svelte";
 
   export let state = false;
   export let instructor = null;
 
-  function handleClose() {
-    state = false;
-  }
+  let reset = { ...instructor };
 
   async function handleSubmit(e) {
     try {
@@ -32,8 +30,8 @@
   }
 </script>
 
-<div class="modal_wrapper" transition:fade={{ duration: 200 }}>
-  <div class="modal rounded-md w-10/12 md:w-1/3">
+<Modal bind:show={state}>
+  <div slot="content">
     <form on:submit|preventDefault={handleSubmit}>
       <div class="text-xl font-bold">Edit Instructor</div>
       <hr class="mb-3" />
@@ -47,31 +45,15 @@
           bind:value={instructor.name}
         />
       </div>
-      <div class="mb-5">
-        <input type="submit" class="btn-primary w-full" value="Submit" />
+      <div>
+        <input
+          type="reset"
+          class="btn-primary w-full mb-3"
+          value="Reset"
+          on:click|preventDefault={() => (instructor = { ...reset })}
+        />
+        <input type="submit" class="btn-primary w-full" value="Save" />
       </div>
     </form>
-
-    <button on:click={handleClose} class="btn-primary w-full">Close</button>
   </div>
-</div>
-
-<style>
-  .modal_wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.4);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 99;
-  }
-
-  .modal {
-    background: #fff;
-    padding: 1rem;
-  }
-</style>
+</Modal>

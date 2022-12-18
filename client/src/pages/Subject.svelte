@@ -4,7 +4,6 @@
   import { onMount } from "svelte";
   import { subjectStore } from "../store";
   import AddSubject from "../lib/Subject/AddSubject.svelte";
-  import ViewSubject from "../lib/Subject/ViewSubject.svelte";
 
   onMount(async () => {
     try {
@@ -24,10 +23,4 @@
 </script>
 
 <div in:fly={{ y: 32, duration: 500 }}>
-  <div class="mb-5">
-    <AddSubject />
-  </div>
-  <div>
-    <ViewSubject />
-  </div>
 </div>

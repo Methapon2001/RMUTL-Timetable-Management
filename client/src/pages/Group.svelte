@@ -3,13 +3,13 @@
   import { fly } from "svelte/transition";
   import { onMount } from "svelte";
   import { buildingStore } from "../store";
-  import AddBuilding from "../lib/Building/AddBuilding.svelte";
-  import ViewBuilding from "../lib/Building/ViewBuilding.svelte";
+  import AddGroup from "../lib/Group/AddGroup.svelte";
+
 
   onMount(async () => {
     try {
       const res = await axios
-        .get("http://localhost:3000/api/building?limit=10")
+        .get("http://localhost:3000/api/group?limit=10")
         .then((res) => res.data);
       $buildingStore = {
         data: res.data,

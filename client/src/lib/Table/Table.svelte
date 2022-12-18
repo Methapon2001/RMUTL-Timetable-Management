@@ -73,7 +73,7 @@
 </script>
 
 <div class="col-span-11">
-  <div class="grid grid-cols-25 relative">
+  <div class="grid grid-cols-25 relative mb-3">
     {#each weekday as day}
       {#each Array(25) as _, period}
         <button
@@ -86,7 +86,7 @@
 
     {#if select && state.weekday && state.period && state.size}
       <div
-        class="bg-green-600 opacity-20 absolute w-full"
+        class="bg-green-600 opacity-20 absolute w-full pointer-events-none"
         style="grid-column: {convertPeriod(state.period, state.size)}; 
         grid-row: {convertWeekday(state.weekday)};"
       />

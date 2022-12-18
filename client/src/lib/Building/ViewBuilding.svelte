@@ -74,7 +74,32 @@
   <EditBuilding bind:state={editModal} bind:building={editData} />
 {/if}
 
-<div class="border border-slate-300 rounded p-5">
+<div class="grid grid-cols-5 gap-3">
+  {#each $buildingStore.data as building (building.id)}
+    <div class="card grid grid-cols-5 bg-white rounded drop-shadow hover:bg-slate-100 mb-5 px-3 py-1">
+      <div class="text-slate-300 text-xs pt-1 col-span-1">Code</div>
+      <div class="text-slate-300 text-xs pt-1 col-span-4">Name</div>
+      <div class="font-bold col-span-1">{building.code}</div>
+      <div class="font-bold col-span-4">{building.name}</div>
+      <div class="text-right col-span-5">
+        <button
+          on:click={showEdit(building)}
+          class="p-1 rounded-full transition hover:bg-slate-200"
+        >
+          <EditIcon />
+        </button>
+        <button
+          on:click={handleDelete(building)}
+          class="p-1 rounded-full transition hover:bg-slate-200"
+        >
+          <DeleteIcon />
+        </button>
+      </div>
+    </div>
+  {/each}
+</div>
+
+<!-- <div class="border border-slate-300 rounded p-5">
   <div class="overflow-x-auto mb-5">
     <table class="w-full">
       <thead>
@@ -116,4 +141,4 @@
   <button on:click={handleNextPage} disabled={!next} class="btn-primary">
     Next
   </button>
-</div>
+</div> -->

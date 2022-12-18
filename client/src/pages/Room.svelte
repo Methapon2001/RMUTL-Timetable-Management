@@ -4,7 +4,6 @@
   import { onMount } from "svelte";
   import { roomStore } from "../store";
   import AddRoom from "../lib/Room/AddRoom.svelte";
-  import ViewRoom from "../lib/Room/ViewRoom.svelte";
 
   onMount(async () => {
     try {
@@ -24,10 +23,4 @@
 </script>
 
 <div in:fly={{ y: 32, duration: 500 }}>
-  <div class="mb-5">
-    <AddRoom />
-  </div>
-  <div class="mb-5">
-    <ViewRoom />
-  </div>
 </div>

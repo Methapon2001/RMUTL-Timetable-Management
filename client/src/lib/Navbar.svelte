@@ -1,10 +1,76 @@
-<div
-  class="p-3 bg-slate-100 shadow-md flex justify-center items-center content-center overflow-x-auto"
->
-  <a class="nav-link" href="/">Timetable</a>
-  <a class="nav-link" href="/room">Room</a>
-  <a class="nav-link" href="/subject">Subject</a>
-  <a class="nav-link" href="/instructor">Instructor</a>
-  <a class="nav-link" href="/section">Section</a>
-  <a class="nav-link" href="/building">Building</a>
+<script>
+  let path = window.location.pathname;
+
+  function handlePath(e) {
+    path = e.target.pathname;
+  }
+</script>
+
+<div class="py-3 pl-3 pr-1">
+  <a
+    href="/"
+    class="nav-link {path == '/'
+      ? 'bg-slate-600'
+      : 'hover:bg-slate-600'}"
+    on:click={handlePath}
+  >
+    Timetable
+  </a>
+  <a
+    href="/instructor"
+    class="nav-link {path == '/instructor'
+      ? 'bg-slate-600'
+      : 'hover:bg-slate-600'}"
+    on:click={handlePath}
+  >
+    Instructor
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
+  <a href="#placeholder" class="nav-link" on:click={handlePath}>
+    Placeholder
+  </a>
 </div>

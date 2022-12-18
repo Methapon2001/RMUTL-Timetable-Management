@@ -3,7 +3,7 @@
   fill="none"
   viewBox="0 0 24 24"
   stroke-width="1.5"
-  class="stroke-red-500 w-6 h-6 transition hover:stroke-red-600"
+  class="stroke-red-500 w-6 h-6 transition"
 >
   <path
     stroke-linecap="round"
