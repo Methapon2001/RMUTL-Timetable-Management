@@ -83,7 +83,7 @@
             {/each}
           </select>
         {/each}
-        <button class="btn-primary" on:click={addSubject}>Add Subject</button>
+        <button class="btn-primary" type="button" on:click={addSubject}>Add Subject</button>
       </div>
     </div>
     <div class="mb-5">

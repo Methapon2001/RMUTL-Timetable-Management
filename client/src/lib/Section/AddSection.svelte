@@ -191,7 +191,7 @@
           {/each}
 
           <div class="col-span-5">
-            <button class="btn-primary" on:click={() => addInstructor(0)}>
+            <button class="btn-primary" type="button" on:click={() => addInstructor(0)}>
               Add Instructor
             </button>
           </div>
@@ -236,7 +236,7 @@
               {/each}
 
               <div class="col-span-5">
-                <button class="btn-primary" on:click={() => addInstructor(i)}>
+                <button class="btn-primary" type="button" on:click={() => addInstructor(i)}>
                   Add Instructor
                 </button>
               </div>
@@ -259,7 +259,7 @@
         {/each}
 
         <div class="col-span-5">
-          <button class="btn-primary" on:click={() => addLabSec()}>
+          <button class="btn-primary" type="button" on:click={() => addLabSec()}>
             Add Lab section
           </button>
         </div>
