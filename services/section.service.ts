@@ -1,17 +1,43 @@
-import { PrismaClient, Section, SectionType } from "@prisma/client";
+import {
+  InstructorOnSection,
+  PrismaClient,
+  Section,
+  SectionType,
+} from "@prisma/client";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 const prisma = new PrismaClient();
 
+const inc = {
+  subject: true,
+  room: true,
+  group: true,
+  parent: {
+    include: {
+      room: true,
+      instructorOnSection: {
+        include: {
+          instructor: true,
+        },
+      },
+    },
+  },
+  instructorOnSection: {
+    include: {
+      instructor: true,
+    },
+  },
+};
+
 type SectionBody = {
   type: SectionType;
   roomId: number;
-  groupId: number;
   instructorId: number[];
 };
 
 type Body = {
   subjectId: number;
+  groupId: number;
   sections: SectionBody[];
 };
 
@@ -28,7 +54,7 @@ export async function createSection(
   req: FastifyRequest<{ Body: Body }>,
   res: FastifyReply,
 ) {
-  const { subjectId, sections } = req.body;
+  const { subjectId, groupId, sections } = req.body;
 
   const data: Section[] = [];
 
@@ -59,32 +85,13 @@ export async function createSection(
         lab: shift.type != "lab" ? null : prev?.lab == null ? 1 : prev.lab + 1,
         subjectId: subjectId,
         roomId: shift.roomId,
-        groupId: shift.groupId,
+        groupId: groupId,
         parentId: main ? main.id : null,
         instructorOnSection: {
           create: instructor,
         },
       },
-      include: {
-        subject: true,
-        room: true,
-        group: true,
-        parent: {
-          include: {
-            room: true,
-            instructorOnSection: {
-              include: {
-                instructor: true,
-              },
-            },
-          },
-        },
-        instructorOnSection: {
-          include: {
-            instructor: true,
-          },
-        },
-      },
+      include: inc
     });
 
     data.push(section);
@@ -114,26 +121,7 @@ export async function requestSection(
     : await prisma.section.findMany({
       skip: offset,
       take: limit,
-      include: {
-        subject: true,
-        room: true,
-        group: true,
-        parent: {
-          include: {
-            room: true,
-            instructorOnSection: {
-              include: {
-                instructor: true,
-              },
-            },
-          },
-        },
-        instructorOnSection: {
-          include: {
-            instructor: true,
-          },
-        },
-      },
+      include: inc
     });
 
   const count = id ? null : await prisma.section.count();
@@ -157,6 +145,51 @@ export async function updateSection(
   >,
   res: FastifyReply,
 ) {
+  const { id } = req.params;
+
+  await prisma.section.update({
+    where: {
+      id: id,
+    },
+    data: {
+      type: req.body.type,
+      no: req.body.no,
+      lab: req.body.lab,
+      subjectId: req.body.subjectId,
+      roomId: req.body.roomId,
+      groupId: req.body.groupId,
+    },
+  });
+
+  if (req.body.instructorId) {
+    const instructorId: InstructorOnSection[] = [];
+
+    req.body.instructorId.forEach((instructor) => {
+      instructorId.push({ sectionId: id, instructorId: instructor });
+    });
+
+    await prisma.instructorOnSection.deleteMany({
+      where: {
+        sectionId: id,
+      },
+    });
+
+    await prisma.instructorOnSection.createMany({
+      data: instructorId,
+    });
+  }
+
+  const updated = await prisma.section.findFirst({
+    where: {
+      id: id,
+    },
+    include: inc
+  });
+
+  return res.status(200).send({
+    result: "ok",
+    data: updated,
+  });
 }
 
 export async function deleteSection(
@@ -169,26 +202,7 @@ export async function deleteSection(
     where: {
       id: id,
     },
-    include: {
-      subject: true,
-      room: true,
-      group: true,
-      parent: {
-        include: {
-          room: true,
-          instructorOnSection: {
-            include: {
-              instructor: true,
-            },
-          },
-        },
-      },
-      instructorOnSection: {
-        include: {
-          instructor: true,
-        },
-      },
-    },
+    include: inc
   });
 
   return res.status(200).send({

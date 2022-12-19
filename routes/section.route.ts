@@ -10,17 +10,17 @@ export default async (server: FastifyInstance) => {
         required: ["subjectId", "sections"],
         properties: {
           subjectId: { type: "number" },
+          groupId: { type: "number", nullable: true, default: null },
           sections: {
             type: "array",
             minItems: 1,
             maxItems: 20,
             items: {
               type: "object",
-              required: ["type", "roomId", "groupId", "instructorId"],
+              required: ["type", "roomId", "instructorId"],
               properties: {
                 type: { type: "string", enum: ["lecture", "lab"] },
                 roomId: { type: "number", nullable: true, default: null },
-                groupId: { type: "number", nullable: true, default: null },
                 instructorId: {
                   type: "array",
                   minItems: 1,
