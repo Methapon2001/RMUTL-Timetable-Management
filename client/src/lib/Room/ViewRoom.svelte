@@ -92,7 +92,7 @@
               >{room.building.name}</td
             >
             <td class="p-1 text-center uppercase border"
-              >{room.building.code}{room.name}</td
+              >{room.building.code}.{room.name}</td
             >
             <td class="p-1 text-center capitalize border">{room.type}</td>
             <td class="p-1 text-center border">

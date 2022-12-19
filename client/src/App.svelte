@@ -8,6 +8,7 @@
   import Subject from "./pages/Subject.svelte";
   import Section from "./pages/Section.svelte";
   import Building from "./pages/Building.svelte";
+  import Course from "./pages/Course.svelte";
 
   let page;
 
@@ -16,7 +17,8 @@
   router("/subject", () => (page = Subject));
   router("/instructor", () => (page = Instructor));
   router("/section", () => (page = Section));
-  router("/building", () => page = Building);
+  router("/building", () => (page = Building));
+  router("/course", () => (page = Course));
 
   router.start();
 </script>
