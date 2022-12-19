@@ -23,7 +23,7 @@
 ### Section
 - [x] Add.
 - [x] Remove.
-- [x] Edit.
+- [ ] Edit.
 - [x] View.
 - [x] Sub-Section.
 - [ ] Search.
@@ -68,4 +68,22 @@
 
 ## Front-End Management System
 
-To be added.
+### Timetable (Main)
+- [x] Selectable period.
+- [ ] Save data.
+- [ ] Overlap detect.
+
+### Timetable (Student)
+- [ ] Show section data.
+- [ ] Separate group.
+
+### Timetable (Instructor)
+- [ ] Individual instructor view.
+- [ ] Add data to instructor without listing in student timetable.
+
+### Timetable (Room)
+- [ ] Show data on each day per room.
+
+### Manage System Note
+- [x] Room can be empty for external subject.
+- [x] Instructor can be empty for external subject.
