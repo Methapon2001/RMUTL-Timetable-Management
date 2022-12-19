@@ -50,7 +50,7 @@
     <div class="sidebar bg-slate-500 {show ? 'active' : ''}">
       <Navbar />
     </div>
-    <div class="content bg-slate-200">
+    <div class="content bg-slate-50">
       <div class="p-3">
         <svelte:component this={page} />
       </div>

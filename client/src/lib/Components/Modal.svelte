@@ -19,7 +19,7 @@
 
 {#if show}
   <div
-    class="modal-wrapper fixed flex top-0 right-0 left-0 bottom-0 z-50 justify-center items-center"
+    class="modal-wrapper fixed flex top-0 right-0 left-0 bottom-0 z-40 justify-center items-center"
     transition:fade={{ duration: 200 }}
     on:click={handleClose} on:keydown={handleClose}
   >

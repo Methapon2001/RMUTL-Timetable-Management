@@ -28,15 +28,19 @@
       console.log(err.response.data);
     }
   }
+
+  function handleKeydown(e) {
+
+  }
 </script>
 
 <Modal bind:show={state}>
   <div slot="content">
-    <form on:submit|preventDefault={handleSubmit}>
+    <form on:submit|preventDefault|stopPropagation={handleSubmit}>
       <div class="text-xl font-bold">Edit Instructor</div>
       <hr class="mb-3" />
       <div class="mb-5">
-        <label class="block" for="instructor_name">Instructor Name: </label>
+        <label class="block mb-2" for="instructor_name">Instructor Name: </label>
         <input
           id="instructor_name"
           type="text"
@@ -46,13 +50,13 @@
         />
       </div>
       <div>
+        <input type="submit" class="btn-primary w-full mb-3" value="Save" />
         <input
           type="reset"
-          class="btn-primary w-full mb-3"
+          class="btn-primary w-full"
           value="Reset"
           on:click|preventDefault={() => (instructor = { ...reset })}
         />
-        <input type="submit" class="btn-primary w-full" value="Save" />
       </div>
     </form>
   </div>

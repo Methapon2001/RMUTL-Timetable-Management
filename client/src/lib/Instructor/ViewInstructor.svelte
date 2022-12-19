@@ -1,12 +1,11 @@
 <script>
   import { instructorStore } from "../../store";
-  import { fade, slide } from "svelte/transition";
+  import { fade } from "svelte/transition";
   import axios from "axios";
   import EditInstructor from "./EditInstructor.svelte";
   import EditIcon from "../Icon/EditIcon.svelte";
   import DeleteIcon from "../Icon/DeleteIcon.svelte";
-    import AddInstructor from "./AddInstructor.svelte";
-
+  
   let editModal = false;
   let editData = null;
 
@@ -48,22 +47,21 @@
 
 <EditInstructor bind:state={editModal} instructor={editData} />
 
-<div>
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-3 gap-y-5">
-    {#each $instructorStore.data as instructor (instructor.id)}
-      <div class="card" in:fade>
-        <div class="text-slate-300 text-xs pt-1">Name</div>
-        <div class="font-bold">{instructor.name}</div>
-        <div class="text-right">
-          <button on:click={showEdit(instructor)} class="btn-icon">
-            <EditIcon />
-          </button>
-          <button on:click={handleDelete(instructor)} class="btn-icon">
-            <DeleteIcon />
-          </button>
-        </div>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+  {#each $instructorStore.data as instructor (instructor.id)}
+    <div class="card flex flex-col justify-between" in:fade>
+      <div>
+        <span class="block text-slate-300 text-xs pt-1">Name</span>
+        <span class="font-bold">{instructor.name}</span>
       </div>
-    {/each}
-  </div>
-
+      <div class="text-right">
+        <button on:click={showEdit(instructor)} class="btn-icon">
+          <EditIcon />
+        </button>
+        <button on:click={handleDelete(instructor)} class="btn-icon">
+          <DeleteIcon />
+        </button>
+      </div>
+    </div>
+  {/each}
 </div>

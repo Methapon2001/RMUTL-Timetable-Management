@@ -4,23 +4,23 @@
 
 @layer components {
   .nav-link {
-    @apply block mb-2 transition px-3 py-2 text-white rounded-full;
-  }
-
-  .form-input {
-    @apply px-4 py-2 w-full bg-slate-100 rounded-full outline-none border-2 border-transparent transition focus:border-2 focus:border-slate-600 placeholder:capitalize;
-  }
-
-  .btn-primary {
-    @apply px-4 py-2 text-center bg-slate-500 text-white rounded-full transition cursor-pointer outline-none hover:bg-slate-600 disabled:bg-slate-300;
+    @apply block mb-2 transition px-3 py-2 text-white rounded-lg;
   }
 
   .btn-icon {
     @apply p-1 rounded-full transition outline-none hover:bg-slate-200;
   }
+
+  .btn-primary {
+    @apply px-4 py-2 shadow rounded-lg border bg-slate-500 text-center text-white transition outline-none hover:bg-slate-600 disabled:bg-slate-300 cursor-pointer;
+  }
+
+  .form-input {
+    @apply px-4 py-2 shadow rounded-lg border bg-slate-100 w-full outline-none transition-[outline] focus:outline-2 focus:outline-slate-500 placeholder:capitalize;
+  }
   
   .card {
-    @apply px-3 py-1 rounded-lg drop-shadow bg-white transition hover:drop-shadow-xl hover:-translate-y-0.5 cursor-pointer;
+    @apply px-3 py-1 rounded-lg shadow bg-white transition hover:shadow-md hover:-translate-y-0.5 cursor-pointer;
   }
 }
 
