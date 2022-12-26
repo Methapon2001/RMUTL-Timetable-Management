@@ -2,11 +2,21 @@
   import axios from "axios";
   import { instructorStore } from "../../store";
 
+  let errors = {
+    name: "",
+  };
+
   let state = {
     name: undefined,
   };
 
   async function handleSubmit(e) {
+    if (!state.name) errors.name = "Please select some options.";
+
+    for (const value in Object.values(state)) {
+      if (value == null || value == undefined) return;
+    }
+
     try {
       const res = await axios.post("http://localhost:3000/api/instructor", {
         ...state,
@@ -39,6 +49,7 @@
           placeholder="Enter Instructor Name"
           bind:value={state.name}
         />
+        <span class="text-red-600 font-bold"> { errors.name}   </span>
       </div>
       <div>
         <input

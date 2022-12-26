@@ -3,6 +3,12 @@
   import { onMount } from "svelte";
   import { roomStore } from "../../store";
 
+  let errors = {
+    name: "",
+    type: "",
+    buildingId: "",
+  };
+
   let state = {
     name: undefined,
     type: "lecture",
@@ -39,6 +45,14 @@
   });
 
   async function handleSubmit(e) {
+    if (!state.name) errors.name = "Please fill out this field.";
+    if (!state.type) errors.type = "Please select some options.";
+    if (!state.buildingId) errors.buildingId = "Please select some options.";
+
+    for (const value in Object.values(state)) {
+      if (value == null || value == undefined) return;
+    }
+
     try {
       const res = await axios.post("http://localhost:3000/api/room", {
         ...state,
@@ -76,6 +90,8 @@
             <option value={item.id}>{item.name}</option>
           {/each}
         </select>
+        <span class="text-red-600 font-bold"> { errors.buildingId}   </span> 
+
       </div>
       <div class="md:col-span-3">
         <label class="block" for="room_name">Room Name: </label>
@@ -86,6 +102,7 @@
           placeholder="Enter Room Name"
           bind:value={state.name}
         />
+        <span class="text-red-600 font-bold"> { errors.name}   </span> 
       </div>
       <div class="md:col-span-1">
         <label class="block" for="room_type">Room Type: </label>
@@ -94,6 +111,7 @@
             <option value={item.value}>{item.text}</option>
           {/each}
         </select>
+        <span class="text-red-600 font-bold"> { errors.type}   </span> 
       </div>
     </div>
     <div class="mb-5">

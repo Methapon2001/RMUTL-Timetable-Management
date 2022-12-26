@@ -2,12 +2,24 @@
   import axios from "axios";
   import { buildingStore } from "../../store";
 
+  let errors = {
+    code: "",
+    name: "",
+  };
+
   let state = {
     code: undefined,
     name: undefined,
   };
 
   async function handleSubmit(e) {
+    if (!state.code) errors.code = "Please fill out this field.";
+    if (!state.name) errors.name = "Please fill out this field.";
+
+    for (const value in Object.values(state)) {
+      if (value == null || value == undefined) return;
+    }
+
     try {
       const res = await axios.post("http://localhost:3000/api/building", {
         ...state,
@@ -41,6 +53,7 @@
           placeholder="Enter building Code"
           bind:value={state.code}
         />
+        <span class="text-red-600 font-bold"> { errors.code}   </span> 
       </div>
       <div class="md:col-span-2">
         <label class="block" for="building_name">Building Name: </label>
@@ -51,6 +64,7 @@
           placeholder="Enter building Name"
           bind:value={state.name}
         />
+        <span class="text-red-600 font-bold"> { errors.name}   </span> 
       </div>
     </div>
     <div>

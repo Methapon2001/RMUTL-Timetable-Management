@@ -2,6 +2,17 @@
   import axios from "axios";
   import { subjectStore } from "../../store";
 
+  let errors = {
+    code: "",
+    name: "",
+    credit: "",
+    lecture: "",
+    lab: "",
+    exam: "",
+    type: "",
+    category: "",
+  };
+
   let state = {
     code: undefined,
     name: undefined,
@@ -36,6 +47,19 @@
   ];
 
   async function handleSubmit(e) {
+    if (!state.name) errors.name = "Please fill out this field.";
+    if (!state.code) errors.code = "Please fill out this field.";
+    if (!state.credit) errors.credit = "Please select some options.";
+    if (!state.lecture) errors.lecture = "Please select some options.";
+    if (!state.lab) errors.lab = "Please fill out this field.";
+    if (!state.exam) errors.exam = "Please select some options.";
+    if (!state.type) errors.type = "Please select some options.";
+    if (!state.category) errors.category = "Please select some options.";
+
+    for (const value in Object.values(state)) {
+      if (value == null || value == undefined) return;
+    }
+
     try {
       const res = await axios.post("http://localhost:3000/api/subject", {
         ...state,
@@ -75,6 +99,7 @@
           placeholder="Enter Subject Code"
           bind:value={state.code}
         />
+        <span class="text-red-600 font-bold"> { errors.code}   </span>
       </div>
       <div class="md:col-span-3">
         <label class="block" for="subject_name">Subject Name: </label>
@@ -85,6 +110,7 @@
           placeholder="Enter Subject Name"
           bind:value={state.name}
         />
+        <span class="text-red-600 font-bold"> { errors.name}   </span>
       </div>
       <div class="md:col-span-1">
         <label class="block" for="subject_credit">Credit: </label>
@@ -95,6 +121,7 @@
           placeholder="Enter Subject Credit"
           bind:value={state.credit}
         />
+        <span class="text-red-600 font-bold"> { errors.credit}   </span>
       </div>
       <div class="md:col-span-1">
         <label class="block" for="subject_lecture">Lecture Hours: </label>
@@ -105,6 +132,7 @@
           placeholder="Enter Lecture Hours"
           bind:value={state.lecture}
         />
+        <span class="text-red-600 font-bold"> { errors.lecture}   </span>
       </div>
       <div class="md:col-span-1">
         <label class="block" for="subject_lab">Lab Hours: </label>
@@ -115,6 +143,7 @@
           placeholder="Enter Lab Hours"
           bind:value={state.lab}
         />
+        <span class="text-red-600 font-bold"> { errors.lab}   </span>
       </div>
       <div class="md:col-span-1">
         <label class="block" for="subject_exam">Exam Hours: </label>
@@ -125,6 +154,7 @@
           placeholder="Enter Exam Hours"
           bind:value={state.exam}
         />
+        <span class="text-red-600 font-bold"> { errors.exam}   </span>
       </div>
       <div class="md:col-span-1">
         <label class="block" for="subject_type">Type: </label>
@@ -133,6 +163,7 @@
             <option value={item.value}>{item.text}</option>
           {/each}
         </select>
+        <span class="text-red-600 font-bold"> { errors.type}   </span>
       </div>
       <div class="md:col-span-1">
         <label class="block" for="subject_category">Category: </label>
@@ -145,6 +176,7 @@
             <option value={item.value}>{item.text}</option>
           {/each}
         </select>
+        <span class="text-red-600 font-bold"> { errors.category}   </span>
       </div>
     </div>
     <div>
