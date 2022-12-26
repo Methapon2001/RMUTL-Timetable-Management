@@ -3,6 +3,11 @@
   import { onMount } from "svelte";
   import { sectionStore } from "../../store";
 
+  let errors = {
+    subjectId: "",
+    groupId: "",
+  };
+
   let state = {
     subjectId: null,
     groupId: null,
@@ -59,6 +64,13 @@
   });
 
   async function handleSubmit(e) {
+    if (!state.subjectId) errors.subjectId = "Please select some options.";
+    if (!state.groupId) errors.groupId = "Please select some options.";
+
+    for (const value in Object.values(state)) {
+      if (value == null || value == undefined) return;
+    }
+
     try {
       const res = await axios.post("http://localhost:3000/api/section", {
         subjectId: state.subjectId,
@@ -152,6 +164,7 @@
             <option value={item.id}>{item.name}</option>
           {/each}
         </select>
+        <span class="text-red-600 font-bold"> { errors.groupId}   </span> 
 
         <div class="col-span-5">
           <label class="block" for="subject_name">Subject: </label>
@@ -166,6 +179,7 @@
               <option value={item.id}>{item.name}</option>
             {/each}
           </select>
+          <span class="text-red-600 font-bold"> { errors.subjectId}   </span> 
         </div>
       </div>
 
