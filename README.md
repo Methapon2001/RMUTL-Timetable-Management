@@ -7,23 +7,23 @@
 - [x] Remove.
 - [x] Edit.
 - [x] View.
-- [ ] Search.
+- [x] Search.
 ### Instructor
 - [x] Add.
 - [x] Remove.
 - [x] Edit.
 - [x] View.
-- [ ] Search.
+- [x] Search.
 ### Subject
 - [x] Add.
 - [x] Remove.
 - [x] Edit.
 - [x] View.
-- [ ] Search.
+- [ ] Search - Implemented name and code, all other field that will be add is in consideration.
 ### Section
 - [x] Add.
 - [x] Remove.
-- [ ] Edit.
+- [x] Edit - Section type can not be edit and must not be edit. Associated record will be updated automatically on some field to prevent data conflict.
 - [x] View.
 - [x] Sub-Section.
 - [ ] Search.
@@ -32,13 +32,13 @@
 - [x] Remove.
 - [x] Edit.
 - [x] View.
-- [ ] Search.
+- [x] Search.
 ### Room
 - [x] Add.
 - [x] Remove.
 - [x] Edit.
 - [x] View.
-- [ ] Search.
+- [x] Search - Implemented name. Search by buiding name will be added in the future.
 ### Timetable
 - [ ] Add.
 - [ ] Remove.
@@ -54,10 +54,10 @@
 - [ ] Search.
 - [ ] Conflict.
 ### Course
-- [ ] Add.
-- [ ] Remove.
-- [ ] Edit.
-- [ ] View.
+- [x] Add.
+- [x] Remove.
+- [x] Edit.
+- [x] View.
 - [ ] Search.
 ### Plan
 - [ ] Add.
