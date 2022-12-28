@@ -1,4 +1,4 @@
-import { PrismaClient, Building } from "@prisma/client";
+import { Building, PrismaClient } from "@prisma/client";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 const prisma = new PrismaClient();
@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 type Query = {
   limit: number;
   offset: number;
-};
+} & Building;
 
 type Param = {
   id: number;
@@ -31,7 +31,7 @@ export async function requestBuilding(
   res: FastifyReply,
 ) {
   const { id } = req.params;
-  const { limit, offset } = req.query;
+  const { name, code, limit, offset } = req.query;
 
   const building = id
     ? await prisma.building.findFirst({
@@ -43,6 +43,14 @@ export async function requestBuilding(
       },
     })
     : await prisma.building.findMany({
+      where: {
+        code: {
+          contains: code,
+        },
+        name: {
+          contains: name,
+        }
+      },
       skip: offset,
       take: limit,
       include: {
@@ -50,7 +58,16 @@ export async function requestBuilding(
       },
     });
 
-  const count = id ? null : await prisma.building.count();
+  const count = id ? null : await prisma.building.count({
+    where: {
+      code: {
+        contains: code,
+      },
+      name: {
+        contains: name,
+      }
+    },
+  });
 
   return res.status(200).send({
     result: "ok",

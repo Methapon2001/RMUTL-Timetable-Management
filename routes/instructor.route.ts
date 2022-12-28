@@ -26,6 +26,7 @@ export default async (server: FastifyInstance) => {
       querystring: {
         type: "object",
         properties: {
+          name: { type: "string" },
           limit: { type: "number", default: 20 },
           offset: { type: "number", default: 0 },
         },
