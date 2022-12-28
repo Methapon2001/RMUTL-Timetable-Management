@@ -1,5 +1,10 @@
 import { FastifyInstance } from "fastify";
-import { createSection, deleteSection, requestSection } from "../services/section.service";
+import {
+  createSection,
+  deleteSection,
+  requestSection,
+  updateSection,
+} from "../services/section.service";
 
 export default async (server: FastifyInstance) => {
   server.post("/api/section", {
@@ -48,6 +53,28 @@ export default async (server: FastifyInstance) => {
           limit: { type: "number", default: 20 },
           offset: { type: "number", default: 0 },
         },
+      },
+    },
+  });
+
+  server.put("/api/section/:id", {
+    handler: updateSection,
+    schema: {
+      params: {
+        type: "object",
+        properties: {
+          id: { type: "number", minimum: 1 },
+        },
+      },
+      body: {
+        type: "object",
+        properties: {
+          no: { type: "number", minimum: 1 },
+          subjectId: { type: "number", minimum: 1 },
+          roomId: { type: "number", minimum: 1 },
+          groupId: { type: "number", minimum: 1 },
+        },
+        additionalProperties: false,
       },
     },
   });
