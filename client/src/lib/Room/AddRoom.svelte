@@ -48,9 +48,11 @@
     if (!state.name) errors.name = "Please fill out this field.";
     if (!state.type) errors.type = "Please select some options.";
     if (!state.buildingId) errors.buildingId = "Please select some options.";
+    
+    const values = Object.entries(state);
 
-    for (const value in Object.values(state)) {
-      if (value == null || value == undefined) return;
+    for (let i = 0; i < values.length; i++) {
+      if (values[i][1] == null || values[i][1] == undefined) return;
     }
 
     try {

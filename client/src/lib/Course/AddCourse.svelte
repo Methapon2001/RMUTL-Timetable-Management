@@ -31,11 +31,13 @@
     if (!state.name) errors.name = "Please fill out this field.";
     if (!state.subjectId) errors.subjectId = "Please select some options.";
 
-    for (const value in Object.values(state)) {
-      if (value == null || value == undefined) return;
+    const values = Object.entries(state);
+
+    for (let i = 0; i < values.length; i++) {
+      if (values[i][1] == null || values[i][1] == undefined) return;
     }
 
-  try {
+    try {
       const res = await axios.post("http://localhost:3000/api/course", {
         ...state,
       });
@@ -56,7 +58,7 @@
       console.log(err.response.data);
     }
   }
-  
+
   function addSubject() {
     state.subjectId = [...state.subjectId, undefined];
 
@@ -80,7 +82,7 @@
           placeholder="Enter Course Name"
           bind:value={state.name}
         />
-        <span class="text-red-600 font-bold"> { errors.name}   </span> 
+        <span class="text-red-600 font-bold"> {errors.name} </span>
       </div>
       <div class="md:col-span-2">
         {#each state.subjectId as _, idx}
@@ -96,7 +98,9 @@
             {/each}
           </select>
         {/each}
-        <button class="btn-primary" type="button" on:click={addSubject}>Add Subject</button> 
+        <button class="btn-primary" type="button" on:click={addSubject}
+          >Add Subject</button
+        >
       </div>
     </div>
     <div class="mb-5">
