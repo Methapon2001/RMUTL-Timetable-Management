@@ -28,15 +28,6 @@
   });
 
   async function handleSubmit() {
-    if (!state.name) errors.name = "Please fill out this field.";
-    if (!state.subjectId) errors.subjectId = "Please select some options.";
-
-    const values = Object.entries(state);
-
-    for (let i = 0; i < values.length; i++) {
-      if (values[i][1] == null || values[i][1] == undefined) return;
-    }
-
     try {
       const res = await axios.post("http://localhost:3000/api/course", {
         ...state,

@@ -64,15 +64,6 @@
   });
 
   async function handleSubmit(e) {
-    if (!state.subjectId) errors.subjectId = "Please select some options.";
-    if (!state.groupId) errors.groupId = "Please select some options.";
-
-    const values = Object.entries(state);
-
-    for (let i = 0; i < values.length; i++) {
-      if (values[i][1] == null || values[i][1] == undefined) return;
-    }
-
     try {
       const res = await axios.post("http://localhost:3000/api/section", {
         subjectId: state.subjectId,
