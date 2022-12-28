@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 type Query = {
   limit: number;
   offset: number;
-};
+} & Subject;
 
 type Param = {
   id: number;
@@ -31,7 +31,7 @@ export async function requestSubject(
   res: FastifyReply,
 ) {
   const { id } = req.params;
-  const { limit, offset } = req.query;
+  const { code, name, limit, offset } = req.query;
 
   const subject = id
     ? await prisma.subject.findFirst({
@@ -40,11 +40,28 @@ export async function requestSubject(
       },
     })
     : await prisma.subject.findMany({
+      where: {
+        code: {
+          contains: code,
+        },
+        name: {
+          contains: name,
+        }
+      },
       skip: offset,
       take: limit,
     });
 
-  const count = id ? null : await prisma.subject.count();
+  const count = id ? null : await prisma.subject.count({
+    where: {
+      code: {
+        contains: code,
+      },
+      name: {
+        contains: name,
+      }
+    },
+  });
 
   return res.status(200).send({
     result: "ok",

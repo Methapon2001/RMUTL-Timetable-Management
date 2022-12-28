@@ -3,14 +3,14 @@ import { FastifyReply, FastifyRequest } from "fastify";
 
 const prisma = new PrismaClient();
 
-interface Query {
-  limit?: number;
-  offset?: number;
-}
+type Query = {
+  limit: number;
+  offset: number;
+} & Group;
 
-interface Param {
-  id?: number;
-}
+type Param = {
+  id: number;
+};
 
 export async function createGroup(
   req: FastifyRequest<{ Body: Group }>,
@@ -31,7 +31,7 @@ export async function requestGroup(
   res: FastifyReply,
 ) {
   const { id } = req.params;
-  const { limit, offset } = req.query;
+  const { name, limit, offset } = req.query;
 
   const group = id
     ? await prisma.group.findFirst({
@@ -40,11 +40,22 @@ export async function requestGroup(
       },
     })
     : await prisma.group.findMany({
+      where: {
+        name: {
+          contains: name,
+        }
+      },
       skip: offset,
       take: limit,
     });
 
-  const count = id ? null : await prisma.group.count();
+  const count = id ? null : await prisma.group.count({
+    where: {
+      name: {
+        contains: name,
+      }
+    },
+  });
 
   return res.status(200).send({
     result: "ok",
