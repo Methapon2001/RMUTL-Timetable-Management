@@ -88,10 +88,12 @@ export async function createSection(
         groupId: groupId,
         parentId: main ? main.id : null,
         instructorOnSection: {
-          create: instructor,
+          createMany: {
+            data: instructor,
+          },
         },
       },
-      include: inc
+      include: inc,
     });
 
     data.push(section);
@@ -121,7 +123,7 @@ export async function requestSection(
     : await prisma.section.findMany({
       skip: offset,
       take: limit,
-      include: inc
+      include: inc,
     });
 
   const count = id ? null : await prisma.section.count();
@@ -147,17 +149,36 @@ export async function updateSection(
 ) {
   const { id } = req.params;
 
-  await prisma.section.update({
+  const data = await prisma.section.update({
     where: {
       id: id,
     },
     data: {
-      type: req.body.type,
-      no: req.body.no,
-      lab: req.body.lab,
-      subjectId: req.body.subjectId,
       roomId: req.body.roomId,
       groupId: req.body.groupId,
+    },
+  });
+
+  await prisma.section.updateMany({
+    where: {
+      OR: [
+        {
+          id: data.parentId ?? undefined,
+        },
+        {
+          parentId: data.parentId ?? undefined,
+        },
+        {
+          id: id,
+        },
+        {
+          parentId: id,
+        },
+      ],
+    },
+    data: {
+      no: req.body.no,
+      subjectId: req.body.subjectId,
     },
   });
 
@@ -168,22 +189,24 @@ export async function updateSection(
       instructorId.push({ sectionId: id, instructorId: instructor });
     });
 
-    await prisma.instructorOnSection.deleteMany({
+    const del = prisma.instructorOnSection.deleteMany({
       where: {
         sectionId: id,
       },
     });
 
-    await prisma.instructorOnSection.createMany({
+    const ins = prisma.instructorOnSection.createMany({
       data: instructorId,
     });
+
+    await prisma.$transaction([del, ins]);
   }
 
   const updated = await prisma.section.findFirst({
     where: {
       id: id,
     },
-    include: inc
+    include: inc,
   });
 
   return res.status(200).send({
@@ -202,7 +225,7 @@ export async function deleteSection(
     where: {
       id: id,
     },
-    include: inc
+    include: inc,
   });
 
   return res.status(200).send({

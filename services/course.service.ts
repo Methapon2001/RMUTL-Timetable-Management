@@ -30,7 +30,9 @@ export async function createCourse(
     data: {
       name: req.body.name,
       subjectOnCourse: {
-        create: subjectId,
+        createMany: {
+          data: subjectId,
+        },
       },
     },
     include: {
@@ -119,15 +121,17 @@ export async function updateCourse(
       subjectId.push({ courseId: id, subjectId: subject });
     });
 
-    await prisma.subjectOnCourse.deleteMany({
+    const del = prisma.subjectOnCourse.deleteMany({
       where: {
         courseId: id,
       },
     });
 
-    await prisma.subjectOnCourse.createMany({
+    const ins = prisma.subjectOnCourse.createMany({
       data: subjectId,
     });
+
+    await prisma.$transaction([del, ins]);
   }
 
   const updated = await prisma.course.findFirst({
