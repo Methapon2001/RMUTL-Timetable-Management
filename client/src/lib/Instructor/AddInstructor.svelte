@@ -2,6 +2,7 @@
   import axios from "axios";
   import { instructorStore } from "../../store";
   import Modal from "../Components/Modal.svelte";
+  import { blurOnEscape } from "../Utilities/inputDirectives";
 
   export let state = false;
 
@@ -46,6 +47,7 @@
             class="form-input"
             placeholder="Enter Instructor Name"
             bind:value={form.name}
+            use:blurOnEscape
           />
         </div>
         <div>

@@ -6,6 +6,7 @@
   import AddInstructor from "../lib/Instructor/AddInstructor.svelte";
   import ViewInstructor from "../lib/Instructor/ViewInstructor.svelte";
   import AddIcon from "../lib/Icons/AddIcon.svelte";
+  import { blurOnEscape } from "../lib/Utilities/inputDirectives";
 
   onMount(async () => {
     try {
@@ -38,6 +39,7 @@
           class="form-input bg-white text-black"
           placeholder="Search"
           type="text"
+          use:blurOnEscape
         />
       </div>
       <div class="self-center justify-self-end col-start-5">

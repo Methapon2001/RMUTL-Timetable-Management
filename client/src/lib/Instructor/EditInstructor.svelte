@@ -2,6 +2,7 @@
   import axios from "axios";
   import { instructorStore } from "../../store";
   import Modal from "../Components/Modal.svelte";
+  import { blurOnEscape } from "../Utilities/inputDirectives";
 
   export let state = false;
   export let instructor = null;
@@ -29,9 +30,7 @@
     }
   }
 
-  function handleKeydown(e) {
-
-  }
+  function handleKeydown(e) {}
 </script>
 
 <Modal bind:show={state}>
@@ -40,13 +39,16 @@
       <div class="text-xl font-bold">Edit Instructor</div>
       <hr class="mb-3" />
       <div class="mb-5">
-        <label class="block mb-2" for="instructor_name">Instructor Name: </label>
+        <label class="block mb-2" for="instructor_name"
+          >Instructor Name:
+        </label>
         <input
           id="instructor_name"
           type="text"
           class="form-input"
           placeholder="Enter Instructor Name"
           bind:value={instructor.name}
+          use:blurOnEscape
         />
       </div>
       <div>
