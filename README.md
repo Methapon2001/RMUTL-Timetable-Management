@@ -38,7 +38,7 @@
 - [x] Remove.
 - [x] Edit.
 - [x] View.
-- [x] Search - Implemented name. Search by buiding name will be added in the future.
+- [x] Search - Implemented name. Search by building name will be added in the future.
 ### Timetable
 - [ ] Add.
 - [ ] Remove.
