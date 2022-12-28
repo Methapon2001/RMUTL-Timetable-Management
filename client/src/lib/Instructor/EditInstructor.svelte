@@ -8,7 +8,7 @@
 
   let reset = { ...instructor };
 
-  async function handleSubmit(e) {
+  async function handleSubmit() {
     try {
       const res = await axios.put(
         `http://localhost:3000/api/instructor/${instructor.id}`,

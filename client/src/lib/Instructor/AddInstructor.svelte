@@ -9,7 +9,7 @@
     name: null,
   };
 
-  async function handleSubmit(e) {
+  async function handleSubmit() {
     try {
       const res = await axios.post("http://localhost:3000/api/instructor", {
         ...form,
