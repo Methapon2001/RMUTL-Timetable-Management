@@ -10,7 +10,7 @@
     }
   }
 
-  function handleClose(e) {
+  function handleClose() {
     show = false;
   }
 </script>
