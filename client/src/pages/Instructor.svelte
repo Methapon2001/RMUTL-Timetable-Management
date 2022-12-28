@@ -1,11 +1,11 @@
 <script>
   import axios from "axios";
-  import { fly, slide } from "svelte/transition";
+  import { fly } from "svelte/transition";
   import { onMount } from "svelte";
   import { instructorStore } from "../store";
   import AddInstructor from "../lib/Instructor/AddInstructor.svelte";
   import ViewInstructor from "../lib/Instructor/ViewInstructor.svelte";
-    import AddIcon from "../lib/Icon/AddIcon.svelte";
+  import AddIcon from "../lib/Icons/AddIcon.svelte";
 
   onMount(async () => {
     try {
@@ -34,15 +34,22 @@
   <div class="mb-3">
     <div class="grid grid-cols-4 lg:grid-cols-5 gap-3 mb-3">
       <div class="self-center col-span-3 md:col-span-2">
-        <input class="form-input bg-white text-black" placeholder="Search" type="text">
+        <input
+          class="form-input bg-white text-black"
+          placeholder="Search"
+          type="text"
+        />
       </div>
       <div class="self-center justify-self-end col-start-5">
-        <button class="btn-primary bg-teal-500 hover:bg-teal-600" on:click={showAddData}><AddIcon/></button>
+        <button
+          class="btn-primary bg-teal-500 hover:bg-teal-600"
+          on:click={showAddData}><AddIcon /></button
+        >
       </div>
     </div>
   </div>
 
-  <AddInstructor bind:state={addData}/>
+  <AddInstructor bind:state={addData} />
   <div class="mb-3">
     <div class="rounded-t-lg shadow border bg-slate-500 text-white p-3">
       <span class="font-bold text-xl">Intructors</span>

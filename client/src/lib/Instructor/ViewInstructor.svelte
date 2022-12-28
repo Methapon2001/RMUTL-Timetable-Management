@@ -3,8 +3,8 @@
   import { fade } from "svelte/transition";
   import axios from "axios";
   import EditInstructor from "./EditInstructor.svelte";
-  import EditIcon from "../Icon/EditIcon.svelte";
-  import DeleteIcon from "../Icon/DeleteIcon.svelte";
+  import EditIcon from "../Icons/EditIcon.svelte";
+  import DeleteIcon from "../Icons/DeleteIcon.svelte";
   
   let editModal = false;
   let editData = null;

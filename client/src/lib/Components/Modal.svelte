@@ -1,6 +1,6 @@
 <script>
   import { fade, fly } from "svelte/transition";
-  import CloseIcon from "../Icon/CloseIcon.svelte";
+  import CloseIcon from "../Icons/CloseIcon.svelte";
 
   export let show = false;
 

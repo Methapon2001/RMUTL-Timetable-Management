@@ -1,26 +1,15 @@
 <script>
   import router from "page";
-  import { fly } from "svelte/transition";
 
   import Navbar from "./lib/Navbar.svelte";
   import Home from "./pages/Home.svelte";
   import Instructor from "./pages/Instructor.svelte";
-  import Room from "./pages/Room.svelte";
-  import Subject from "./pages/Subject.svelte";
-  import Section from "./pages/Section.svelte";
-  import Group from "./pages/Group.svelte";
-  import Building from "./pages/Building.svelte";
-  import MenuIcon from "./lib/Icon/MenuIcon.svelte";
+  import MenuIcon from "./lib/Icons/MenuIcon.svelte";
 
   let page;
 
   router("/", () => (page = Home));
-  router("/room", () => (page = Room));
-  router("/subject", () => (page = Subject));
   router("/instructor", () => (page = Instructor));
-  router("/section", () => (page = Section));
-  router("/building", () => (page = Building));
-  router("/group", () => (page = Group));
 
   let show = true;
 
