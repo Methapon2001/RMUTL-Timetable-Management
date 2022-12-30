@@ -1,72 +1,27 @@
 # RMUTL Timetable Management System
+Currently this project is created to be use within Computer Engineering Faculty of RMUTL which may not meet up to your requirements. 
 
-## Back-End Management System
+## Back-End Management System Features
 
-### Group
-- [x] Add.
-- [x] Remove.
-- [x] Edit.
-- [x] View.
-- [x] Search.
-### Instructor
-- [x] Add.
-- [x] Remove.
-- [x] Edit.
-- [x] View.
-- [x] Search.
-### Subject
-- [x] Add.
-- [x] Remove.
-- [x] Edit.
-- [x] View.
-- [ ] Search - Implemented name and code, all other field that will be add is in consideration.
-### Section
-- [x] Add.
-- [x] Remove.
-- [x] Edit - Section type can not be edit and must not be edit. Associated record will be updated automatically on some field to prevent data conflict.
-- [x] View.
-- [x] Sub-Section.
-- [ ] Search.
-### Building
-- [x] Add.
-- [x] Remove.
-- [x] Edit.
-- [x] View.
-- [x] Search.
-### Room
-- [x] Add.
-- [x] Remove.
-- [x] Edit.
-- [x] View.
-- [x] Search - Implemented name. Search by building name will be added in the future.
-### Timetable
-- [ ] Add.
-- [ ] Remove.
-- [ ] Edit.
-- [ ] View.
-- [ ] Search.
-- [ ] Conflict.
-### Timetable Exam
-- [ ] Add.
-- [ ] Remove.
-- [ ] Edit.
-- [ ] View.
-- [ ] Search.
-- [ ] Conflict.
-### Course
-- [x] Add.
-- [x] Remove.
-- [x] Edit.
-- [x] View.
-- [ ] Search.
-### Plan
-- [ ] Add.
-- [ ] Remove.
-- [ ] Edit.
-- [ ] View.
-- [ ] Search.
+| List | Add | Remove | Edit | View | Search | Filter | Note |
+| - | - | - | - | - | - | - | - |
+| Group | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | - |
+| Instructor | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | - |
+| Subject | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: | TO BE ADDED | Search implemented name and code, all other field that will be add is in consideration. |
+| Section | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | TO BE ADDED | TO BE ADDED | Section type can not be edit and must not be edit. Associated record will be updated automatically on some field to prevent data conflict. |
+| Building | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | - |
+| Group | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: | - |
+| Room | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: | TO BE ADDED | Search implemented name. Search by building name will be added in the future. |
+| Course | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | TO BE ADDED | :x: | - |
+| Plan | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | TO BE ADDED | :x: | - |
+| Timetable | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | - |
+| Timetable Exam | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | - ||
 
-## Front-End Management System
+## Additional Back-End Features
+- Check overlapped period in timetable
+- Check every period available to register in timetable
+
+## Front-End Management System Features
 
 ### Timetable (Main)
 - [x] Selectable period.
