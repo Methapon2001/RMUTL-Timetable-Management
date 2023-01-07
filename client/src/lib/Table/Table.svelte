@@ -112,7 +112,7 @@
   <button on:click={handleSubmit} class="btn-primary">Submit</button>
 </div>
 
-<style>
+<style type="text/postcss">
   .grid {
     @apply border-slate-400;
     border-width: 1px 0 0 1px;
