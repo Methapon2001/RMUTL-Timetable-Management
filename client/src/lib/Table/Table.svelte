@@ -91,10 +91,12 @@
 
     {#if select && state.weekday && state.period && state.size}
       <div
-        class="bg-green-600 opacity-20 absolute w-full pointer-events-none"
+        class="p-1 opacity-20 absolute w-full pointer-events-none"
         style="grid-column: {convertPeriod(state.period, state.size)}; 
         grid-row: {convertWeekday(state.weekday)};"
-      />
+      >
+        <div class="bg-green-600 rounded-lg w-full h-full" />
+      </div>
     {/if}
 
     {#each data as sec (sec.id)}
@@ -112,12 +114,12 @@
 
 <style>
   .grid {
-    border-color: #333;
+    @apply border-slate-400;
     border-width: 1px 0 0 1px;
   }
 
   .grid > * {
-    border-color: #333;
+    @apply border-slate-400;
     border-width: 0 1px 1px 0;
     display: flex;
     justify-content: center;
