@@ -43,7 +43,7 @@ export async function requestInstructor(
       where: {
         name: {
           contains: name,
-        },
+        }
       },
       skip: offset,
       take: limit,
@@ -53,7 +53,7 @@ export async function requestInstructor(
     where: {
       name: {
         contains: name,
-      },
+      }
     },
   });
 

@@ -49,7 +49,7 @@ export async function requestRoom(
       where: {
         name: {
           contains: name,
-        },
+        }
       },
       skip: offset,
       take: limit,
@@ -62,7 +62,7 @@ export async function requestRoom(
     where: {
       name: {
         contains: name,
-      },
+      }
     },
   });
 

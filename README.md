@@ -14,12 +14,12 @@ Currently this project is created to be use within Computer Engineering Faculty 
 | Room | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :warning: | TO BE ADDED | Search implemented name. Search by building name will be added in the future. |
 | Course | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | TO BE ADDED | :x: | - |
 | Plan | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | TO BE ADDED | :x: | - |
-| Timetable | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | TO BE ADDED | - |
+| Timetable | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | - |
 | Timetable Exam | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | - ||
 
 ## Additional Back-End Features
-- [ ] Check overlapped period in timetable
-- [ ] Check every period available to register in timetable
+- Check overlapped period in timetable
+- Check every period available to register in timetable
 
 ## Front-End Management System Features
 

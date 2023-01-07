@@ -46,7 +46,7 @@ export async function requestSubject(
         },
         name: {
           contains: name,
-        },
+        }
       },
       skip: offset,
       take: limit,
@@ -59,7 +59,7 @@ export async function requestSubject(
       },
       name: {
         contains: name,
-      },
+      }
     },
   });
 

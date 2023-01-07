@@ -8,7 +8,6 @@ import sectionRoute from "./routes/section.route";
 import subjectRoute from "./routes/subject.route";
 import buildingRoute from "./routes/building.route";
 import courseRoute from "./routes/course.route";
-import timetableRoute from "./routes/timetable.route";
 
 const server = Fastify();
 
@@ -32,8 +31,8 @@ const schemaCompilers: Record<string, Ajv> = {
   headers: new Ajv({
     removeAdditional: false,
     coerceTypes: true,
-    allErrors: true,
-  }),
+    allErrors: true
+  })
 };
 
 server.setValidatorCompiler((req) => {
@@ -80,7 +79,6 @@ server.register(instructorRoute);
 server.register(sectionRoute);
 server.register(buildingRoute);
 server.register(courseRoute);
-server.register(timetableRoute);
 
 const start = async () => {
   await server.listen({ host: "0.0.0.0", port: 3000 }).then(() => {

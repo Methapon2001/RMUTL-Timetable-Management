@@ -25,11 +25,6 @@
     if (select) {
       state.weekday = weekday;
       state.period = parseInt(period);
-
-      // check for overlap
-      // check for type - (elective can overlapped)
-      // virtualize table
-
       state.status = true;
     }
   }

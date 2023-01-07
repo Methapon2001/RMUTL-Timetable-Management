@@ -49,7 +49,7 @@ export async function requestBuilding(
         },
         name: {
           contains: name,
-        },
+        }
       },
       skip: offset,
       take: limit,
@@ -65,7 +65,7 @@ export async function requestBuilding(
       },
       name: {
         contains: name,
-      },
+      }
     },
   });
 
