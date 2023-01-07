@@ -28,6 +28,13 @@ export const sectionStore = writable({
   total: null,
 });
 
+export const courseStore = writable({
+  data: [],
+  limit: null,
+  offset: null,
+  total: null,
+});
+
 export const timetableStore = writable({
   data: [],
   limit: null,
