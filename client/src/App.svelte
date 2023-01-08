@@ -4,12 +4,16 @@
   import Navbar from "./lib/Navbar.svelte";
   import Home from "./pages/Home.svelte";
   import Instructor from "./pages/Instructor.svelte";
+  import Building from "./pages/Building.svelte";
+  import Room from "./pages/Room.svelte";
   import MenuIcon from "./lib/Icons/MenuIcon.svelte";
 
   let page;
 
   router("/", () => (page = Home));
   router("/instructor", () => (page = Instructor));
+  router("/building", () => (page = Building));
+  router("/room", () => (page = Room));
 
   let show = true;
 

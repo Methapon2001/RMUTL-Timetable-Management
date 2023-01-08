@@ -4,7 +4,7 @@
 
 @layer components {
   .nav-link {
-    @apply block mb-2 transition px-3 py-2 text-white rounded-lg;
+    @apply flex mb-2 transition px-3 py-2 text-white rounded-lg;
   }
 
   .btn-icon {
@@ -20,7 +20,7 @@
   }
   
   .card {
-    @apply px-3 py-1 rounded-lg shadow bg-white transition hover:shadow-md hover:-translate-y-0.5 cursor-pointer;
+    @apply px-3 py-2 rounded-lg shadow bg-white transition hover:shadow-md hover:-translate-y-0.5 cursor-pointer;
   }
 }
 
