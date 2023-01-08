@@ -29,8 +29,6 @@
       console.log(err.response.data);
     }
   }
-
-  function handleKeydown(e) {}
 </script>
 
 <Modal bind:show={state}>
