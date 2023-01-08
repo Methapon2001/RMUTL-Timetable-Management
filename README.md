@@ -1,6 +1,37 @@
 # RMUTL Timetable Management System
 Currently this project is created to be use within Computer Engineering Faculty of RMUTL which may not meet up to your requirements. 
 
+## Run Project
+```bash
+git clone https://github.com/Methapon2001/RMUTL-Timetable-Management.git ./timetable-management
+
+cd ./timetable-management
+
+# npm i
+yarn install 
+
+echo "DATABASE_URL=\"{protocal}://{username}:{password}@{hostname}:{port}/{database}\"" > .env
+
+# npx prisma migrate dev -n init
+# npx prisma studio
+yarn prisma migrate dev -n init
+yarn prisma studio
+```
+In your first terminal
+```bash
+# npm run dev
+yarn run dev
+```
+In your second terminal
+```bash
+cd ./client
+
+# npm i
+# npm run dev
+yarn install
+yarn run dev
+```
+
 ## Back-End Management System Features
 
 | List | Add | Remove | Edit | View | Search | Filter | Note |
@@ -15,7 +46,7 @@ Currently this project is created to be use within Computer Engineering Faculty 
 | Course | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | TO BE ADDED | :x: | - |
 | Plan | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | TO BE ADDED | :x: | - |
 | Timetable | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | TO BE ADDED | - |
-| Timetable Exam | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | - ||
+| Timetable Exam | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | TO BE ADDED | - |
 
 ## Additional Back-End Features
 - [ ] Check overlapped period in timetable
