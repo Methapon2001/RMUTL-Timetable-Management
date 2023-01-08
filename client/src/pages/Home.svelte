@@ -1,9 +1,27 @@
 <script>
   import { fly } from "svelte/transition";
-  import Modal from "../lib/Components/Modal.svelte";
   import Table from "../lib/Table/Table.svelte";
+  import { sectionStore } from "../store";
+  import SectionCard from "../lib/Table/SectionCard.svelte";
+  import { onMount } from "svelte";
+  import axios from "axios";
 
-  let showModal = true;
+  onMount(async () => {
+    try {
+      const res = await axios
+        .get("http://localhost:3000/api/section?limit=10")
+        .then((res) => res.data);
+      $sectionStore = {
+        data: res.data,
+        limit: res.limit,
+        offset: res.offset,
+        total: res.total,
+      };
+    } catch (e) {
+      console.log(e.response.data);
+    }
+  });
+
   let table_data = [
     {
       table_id: null,
@@ -23,20 +41,18 @@
   }
 </script>
 
-{#if showModal}
-  <Modal bind:show={showModal}>
-    <div slot="content">
-      <h1>Modal Component</h1>
-    </div>
-  </Modal>
-{/if}
-
 <div in:fly={{ y: 32, duration: 500 }}>
-  {#each table_data as td (td.id)}
-    <div class="mb-3">
-      <Table select={true} />
+  <div class="grid grid-cols-12 gap-3">
+    <div class="col-span-8">
+      {#each table_data as td (td.id)}
+        <div class="mb-3">
+          <Table select={true} />
+        </div>
+      {/each}
+      <button class="btn-primary" on:click={AddTable}>Add table</button>
     </div>
-  {/each}
-
-  <button class="btn-primary" on:click={AddTable}>Add table</button>
+    <div class="col-span-4">
+      <SectionCard />
+    </div>
+  </div>
 </div>

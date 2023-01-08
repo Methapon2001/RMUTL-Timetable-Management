@@ -22,6 +22,10 @@
   .card {
     @apply px-3 py-2 rounded-lg shadow bg-white transition hover:shadow-md hover:-translate-y-0.5 cursor-pointer;
   }
+
+  .badge {
+    @apply rounded-full p-1 pl-2 pr-2 uppercase font-bold text-xs;
+  }
 }
 
 @layer base {
