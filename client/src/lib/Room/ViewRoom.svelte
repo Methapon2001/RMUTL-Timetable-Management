@@ -52,11 +52,11 @@
     <div class="card flex flex-col justify-between" in:fade>
       <div class="flex flex-col md:flex-row">
         <div class="mr-5">
-          <span class="block text-slate-300 text-xs pt-1">Type</span>
+          <span class="block text-slate-400 text-xs pt-1">Type</span>
           <span class="font-bold capitalize ">{room.type}</span>
         </div>
         <div>
-          <span class="block text-slate-300 text-xs pt-1">Name</span>
+          <span class="block text-slate-400 text-xs pt-1">Name</span>
           <span class="font-bold">{room.building.code}.{room.name}</span>
         </div>
       </div>

@@ -51,7 +51,7 @@
   {#each $instructorStore.data as instructor (instructor.id)}
     <div class="card flex flex-col justify-between" in:fade>
       <div>
-        <span class="block text-slate-300 text-xs pt-1">Name</span>
+        <span class="block text-slate-400 text-xs pt-1">Name</span>
         <span class="font-bold">{instructor.name}</span>
       </div>
       <div class="text-right">
